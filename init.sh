@@ -1,6 +1,8 @@
 #!/bin/bash
 
 vimrc_file="$HOME/.vimrc"
+nvim_path="$HOME/.config/nvim"
+sir_nvim_path="$(pwd)/nvim"
 PACKER_PATH="~/.local/share/nvim/site/pack/packer/start/packer.nvim"
 
 
@@ -34,8 +36,9 @@ echo "${RED}Lets get this going...${NC}"
 
 if [ -f /etc/os-release ]; then
    . /etc/os-release
-   if [[ "$ID" != "debian" && "$ID" != "ubuntu" ]]; then
-      echo "This script is meant to be run on Debian or Ubuntu systems only. Not tested, because i don't needed it"
+   if [[ "$ID" != "debian" && "$ID" != "ubuntu" && "$ID" != "pop" ]]; then
+      echo "This script is meant to be run on Debian, Ubuntu or POPOS systems only. Not tested, because i don't needed it"
+      echo "found: $ID"
       exit 1
    fi
 else 
@@ -67,8 +70,25 @@ if [ -d "$PACKER_PATH" ]; then
       git clone --depth 1 https://github.com/wbthomason/packer.nvim "$PACKER_PATH"
 fi
 
-mkdir -p ~/.config/nvim/
-touch ~/.config/nvim/init.vim	
-cp plugins.lua ~/.config/nvim/lua/plugins.lua
+cd "$PACKER_PATH" && git pull
+
+echo "# ${GREEN} NeoVim Config... ${NC}"
+if [ -d "$nvim_path" ]; then
+    echo "Found folder, checking type ($nvim_path)"
+
+    if [ -L "$nvim_path" ]; then
+        echo "$nvim_path is a symbolic link"
+    elif [ -d "$nvim_path" ]; then
+        echo "$nvim_path is a directory, renaming it to .old"
+        mv "$nvim_path" "$nvim_path.old"
+        ln -s "$sir_nvim_path" "$nvim_path"
+        echo "Created symbolic link"
+    else
+        echo "i don't know what the path is?"
+    fi
+else
+    ln -s "$sir_nvim_path" "$nvim_path"
+    echo "Created symbolic link"
+fi
 
 echo "${YELLOW} Done for now... ${NC}"
