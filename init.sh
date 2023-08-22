@@ -1,8 +1,8 @@
 #!/bin/bash
 
 vimrc_file="$HOME/.vimrc"
-source_line="source $(pwd)/Vundle.vim"
-VUNDLE_PATH=~/.vim/bundle/Vundle.vim
+PACKER_PATH="~/.local/share/nvim/site/pack/packer/start/packer.nvim"
+
 
 check_color_support() {
     if [[ -t 1 ]]; then
@@ -57,29 +57,18 @@ sudo apt-get update
 sudo apt-get install -y git curl btop neovim tmux jq figlet
 echo ${GREEN}
 figlet "Lets Go!"
-echo ${NC}
-echo "# ${GREEN}Vundle Time... ${NC}"
-
-
-if [ -d "$VUNDLE_PATH" ]; then
-	  echo "Assuming it's installed"
-    else
-	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-
 touch "$vimrc_file"
+echo ${NC}
+echo "# ${GREEN} NeoVim Packer Time... ${NC}"
 
-if grep -Fxq "$source_line" "$vimrc_file"; then
-    echo "Vundle already present in .vimrc"
-else
-    echo "$source_line" >> "$vimrc_file"
-    echo "Vundle added to .vimrc"
+if [ -d "$PACKER_PATH" ]; then
+       echo "Assuming it's installed"
+    else
+      git clone --depth 1 https://github.com/wbthomason/packer.nvim "$PACKER_PATH"
 fi
 
-
-fi
-echo "installing plugins...."
-vim +PluginInstall +qall
-
-
+mkdir -p ~/.config/nvim/
+touch ~/.config/nvim/init.vim	
+cp plugins.lua ~/.config/nvim/lua/plugins.lua
 
 echo "${YELLOW} Done for now... ${NC}"
