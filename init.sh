@@ -2,8 +2,14 @@
 
 vimrc_file="$HOME/.vimrc"
 nvim_path="$HOME/.config/nvim"
-sir_nvim_path="$(pwd)/nvim"
+bashrc_path="$HOME/.bashrc"
+fishconfig_path="$HOME/.config/fish/config.fish"
+
 PACKER_PATH="~/.local/share/nvim/site/pack/packer/start/packer.nvim"
+
+sir_nvim_path="$(pwd)/nvim"
+sir_bashrc_path="$(pwd)/bashrc"
+sir_fishconfig_path="$(pwd)/config.fish"
 
 
 check_color_support() {
@@ -90,5 +96,32 @@ else
     ln -s "$sir_nvim_path" "$nvim_path"
     echo "Created symbolic link"
 fi
+echo "# ${GREEN} Checking bashrc... ${NC}"
+source_line="source $sir_bashrc_path"
+
+if grep -Fxq "$source_line" "$bashrc_path"; then
+    echo "Line already present in .bashrc"
+else
+    echo "$source_line" >> "$bashrc_path"
+    echo "Line added to .bashrc"
+    source $bashrc_path
+fi
+
+if [ -d "$fishconfig_path" ]; then
+   echo "No fish..."
+else
+ echo "# ${GREEN} Checking fish... ${NC}"
+	source_line="source $sir_fishconfig_path"
+
+	if grep -Fxq "$source_line" "$fishconfig_path"; then
+	    echo "Line already present in fish config"
+	else
+	    echo "$source_line" >> "$fishconfig_path"
+	    echo "Line added to  fish config"
+	    source $fishconfig_path
+	fi
+
+fi
+
 
 echo "${YELLOW} Done for now... ${NC}"

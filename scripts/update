@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [[ $EUID -ne 0 ]]; then
+    exec sudo "$0" "$@"
+fi
+
+if command -v nala >/dev/null 2>&1; then
+    nala update
+    nala upgrade
+else
+    apt update
+    apt upgrade -y
+fi
+
+flatpak update
+
