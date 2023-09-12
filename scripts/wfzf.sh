@@ -12,8 +12,11 @@ case "$area" in
     selected_folder=$(find ~/workbox/ -maxdepth 1 -type d | sed "s|$1/||" | fzf)
     ;;
   Sandbox)
-    selected_folder=$(find ~/sandbox/ -maxdepth 1 -type d | sed "s|$1/||" | fzf)
-    ;;
+#    selected_folder=$(find ~/sandbox/ -maxdepth 1 -type d | sed "s|$1/||" | fzf)
+#selected_folder=$(find ~/sandbox/ -maxdepth 1 -type d -exec stat --format="%Y %n" {} \; | sort -nr | cut -d ' ' -f 2- | sed "s|$1/||" | fzf)
+selected_folder=$(find ~/sandbox/ -maxdepth 1 -type d -exec stat --format="%Y %n" {} \; | sort -n | cut -d ' ' -f 2- | sed "s|$1/||" | fzf)
+
+;;
   SiREnv)
     selected_folder="/home/chris/sirenv"
     ;;
