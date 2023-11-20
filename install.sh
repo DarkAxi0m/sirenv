@@ -7,7 +7,7 @@ fishconfig_path="$HOME/.config/fish/config.fish"
 tmux_path="$HOME/.tmux.config"
 
 
-PACKER_PATH="~/.local/share/nvim/site/pack/packer/start/packer.nvim"
+PACKER_PATH="$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim"
 
 sir_nvim_path="$(pwd)/nvim"
 sir_bashrc_path="$(pwd)/bashrc"
@@ -65,13 +65,21 @@ if command -v sudo &>/dev/null; then
 
 echo "# ${GREEN}installing somethings i use often etc....${NC}"
 sudo apt-get update
-sudo apt-get install -y git curl btop neovim tmux jq figlet
+sudo apt-get install -y git curl btop  tmux jq figlet fzf
+
+
 echo ${GREEN}
 figlet "Lets Go!"
+echo "----------------"
+install/fish.sh
+install/neovim.sh
+install/lazygit.sh
+echo "----------------"
 touch "$vimrc_file"
 echo ${NC}
 echo "# ${GREEN} NeoVim Packer Time... ${NC}"
 
+echo "$PACKER_PATH"
 if [ -d "$PACKER_PATH" ]; then
        echo "Assuming it's installed"
     else
@@ -131,5 +139,9 @@ ln -s "$sir_tmux_path.local" "$tmux_path.local"
 echo "Created symbolic link"
 
 
+echo "# ${GREEN} Misc Dirs... ${NC}"
+mkdir "$HOME/workbox"
+mkdir "$HOME/sandbox"
+echo "done"
 
 echo "${YELLOW} Done for now... ${NC}"

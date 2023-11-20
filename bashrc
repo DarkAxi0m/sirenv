@@ -1,3 +1,5 @@
+alias vim=nvim
+
 run_wfzf() {
     ~/sirenv/scripts/wfzf.sh
 }
