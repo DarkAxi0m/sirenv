@@ -1,0 +1,991 @@
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native","debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model acccli {
+  Client        String? @db.NVarChar(50)
+  machine       String? @db.NVarChar(50)
+  Remote        Boolean @default(dbgenerated("-1"), map: "DF_acccli_Remote")
+  RemoteIp      String? @db.NVarChar(18)
+  Onsite        Boolean @default(false, map: "DF_acccli_Onsite")
+  User          String? @db.NVarChar(35)
+  OS            String? @db.NVarChar(20)
+  Public_ip     String? @map("Public ip") @db.NVarChar(20)
+  IUser         String? @db.NVarChar(35)
+  inetpwd       String? @db.NVarChar(50)
+  InetSetup     String? @db.NText
+  FTPWebUserPwd String? @db.NText
+  FtpPwd        String? @db.NText
+  ftpaddres     String? @db.NVarChar(50)
+  WebSiteUser   String? @db.NText
+  WebPwd        String? @db.NText
+  ADMINPWD      String? @db.NText
+  RoutUser      String? @db.NVarChar(35)
+  RoutPwd       String? @db.NText
+  RouterIP      String? @db.NVarChar(16)
+  RadminPWD     String? @db.NText
+  Serverconf    String? @db.NVarChar(Max)
+  SMTP          String? @db.NVarChar(100)
+  smarthst      String? @db.NVarChar(50)
+  POP3          String? @db.NVarChar(100)
+  Mailbox1      String? @db.NVarChar(100)
+  mailbox2      String? @db.NVarChar(100)
+  mailbox3      String? @db.NVarChar(100)
+  Note1         String? @db.NText
+  Note2         String? @db.NText
+  MaintVisit    String? @db.NText
+  sqlrmtip      String? @db.NVarChar(80)
+  sqlrmtsapwd   String? @db.NText
+  sqlrmtnotes   String? @db.NText
+  MachineNote   String? @db.NText
+  Laptop        Boolean @default(false, map: "DF_acccli_Laptop")
+  Entryno       Int?
+  Firewall      String? @db.NVarChar(50)
+  Openport      String? @db.NText
+  ProxyIP       String? @db.NVarChar(17)
+  Port          String? @db.NVarChar(6)
+  IntIPrng      String? @db.NText
+  IntNic        String? @db.NVarChar(17)
+  ExtNic        String? @db.NVarChar(17)
+  Serverip      String? @db.NVarChar(50)
+  rserveIP      String? @db.NVarChar(50)
+  locradpwd     String? @db.NVarChar(50)
+  relay         String? @db.NText
+  domains       String? @db.NVarChar(150)
+  desigsrv      Boolean @default(false, map: "DF_acccli_desigsrv")
+  transno       Int     @id(map: "PK_acccli") @default(autoincrement())
+  adsline       String? @db.NVarChar(12)
+}
+
+model Areas {
+  AreaID    Int         @id(map: "PK_Areas")
+  Area      String?     @db.NVarChar(50)
+  HeadingID Int
+  AreaOrder Int?
+  Header    Header      @relation(fields: [HeadingID], references: [HeaderID], onUpdate: NoAction, map: "FK_Areas_Header")
+  Questions Questions[]
+}
+
+model Bank_Statement {
+  Bank_Statement   String @id(map: "PK_Bank Statement") @map("Bank Statement") @db.NVarChar(4)
+  Total_Credits    Float? @map("Total Credits") @db.Money
+  Total_Debits     Float? @map("Total Debits") @db.Money
+  Starting_Balance Float? @map("Starting Balance") @db.Money
+
+  @@map("Bank Statement")
+}
+
+model BkDocs {
+  DocID    Int       @id(map: "PK_BkDocs") @default(autoincrement())
+  ClientID Int
+  Date     DateTime? @db.DateTime
+  FileName String?   @db.NVarChar(Max)
+  Desc     String?   @db.NVarChar(Max)
+}
+
+model BkQuote {
+  QtID       Int       @id(map: "PK_BQuote") @default(autoincrement())
+  Contact    String?   @db.NVarChar(50)
+  Company    String?   @db.NVarChar(80)
+  phone      String?   @db.NVarChar(50)
+  email      String?   @db.NVarChar(150)
+  DateQuoted DateTime? @db.DateTime
+  Quoted     Float?    @db.Money
+}
+
+model BkQuoteTran {
+  AnsID     Int       @id(map: "PK_BkQuoteTran") @default(autoincrement())
+  QuoteID   Int
+  QuestID   Int
+  TimingID  Int
+  CostPer   Float?    @db.Money
+  Costquote Float?    @db.Money
+  NextDue   DateTime? @db.DateTime
+}
+
+model Cashbook {
+  Date              DateTime? @db.DateTime
+  Heading           String?   @db.NVarChar(50)
+  Details           String?   @db.NVarChar(50)
+  Cheque_Number     String?   @map("Cheque Number") @db.NVarChar(50)
+  Amount            Float?    @db.Money
+  Processed         Float?
+  Transno           Int       @id(map: "PK_Cashbook") @default(autoincrement())
+  Bank_Statement_No String?   @map("Bank Statement No") @db.NVarChar(5)
+  temp              Float?
+  Accede            Float?    @db.Money
+  DBF               Float?    @db.Money
+}
+
+model Chart_of_Accounts {
+  Account_Name           String  @id(map: "PK_Chart of Accounts") @map("Account Name") @db.NVarChar(50)
+  Account_Number         Float?  @map("Account Number")
+  Account_Type           String? @map("Account Type") @db.NVarChar(1)
+  Budget_Year_to_Date    Float?  @map("Budget Year to Date")
+  Allocated_Year_to_Date Float?  @map("Allocated Year to Date")
+  Last_Year              Float?  @map("Last Year")
+  Previous_Year          Float?  @map("Previous Year")
+  ACE                    Int?
+  dbf                    Int?
+
+  @@map("Chart of Accounts")
+}
+
+model ClientBack {
+  ID         Int       @id(map: "PK_ClientBack") @default(autoincrement())
+  QuestID    Int?
+  QuoteID    Int?
+  ClientID   Int?
+  Fail       Int?      @default(0, map: "DF_ClientBack_Fail")
+  Date       DateTime? @db.DateTime
+  Programmer String?   @db.NVarChar(50)
+  Notes      String?   @db.NVarChar(Max)
+  Select     Int?      @default(0, map: "DF_ClientBack_Select")
+}
+
+model ClientMaint {
+  ID        Int  @id(map: "PK_ClientMaint") @default(autoincrement())
+  QuestID   Int?
+  QuoteID   Int?
+  MachineID Int?
+  SupportID Int?
+  Fail      Int?
+}
+
+model ClientPasswords {
+  ID            Int     @id(map: "PK_ClientPasswords") @default(autoincrement())
+  Client        String? @db.NVarChar(47)
+  Machine       String? @db.NVarChar(47)
+  Remote        Float?
+  Onsite        Float?
+  RemoteIp      String? @db.NVarChar(20)
+  User          String? @db.NVarChar(35)
+  OS            String? @db.NVarChar(20)
+  Public_ip     String? @map("Public ip") @db.NVarChar(20)
+  IUser         String? @db.NVarChar(100)
+  InetSetup     String? @db.NVarChar(100)
+  FTPWebUserPwd String? @db.NVarChar(255)
+  FtpPwd        String? @db.NVarChar(255)
+  WebSiteUser   String? @db.NVarChar(255)
+  WebPwd        String? @db.NVarChar(255)
+  ADMINPWD      String? @db.NVarChar(255)
+  RoutUser      String? @db.NVarChar(255)
+  RoutPwd       String? @db.NVarChar(255)
+  RouterIP      String? @db.NVarChar(255)
+  RadminPWD     String? @db.NVarChar(255)
+  Serverconf    String? @db.NVarChar(255)
+  SMTP          String? @db.NVarChar(255)
+  POP3          String? @db.NVarChar(255)
+  Mailbox1      String? @db.NVarChar(255)
+  mailbox2      String? @db.NVarChar(255)
+  mailbox3      String? @db.NVarChar(255)
+  VPNuser       String? @db.NVarChar(255)
+  Note1         String? @db.NVarChar(255)
+  Note2         String? @db.NVarChar(255)
+  MaintVisit    String? @db.NVarChar(255)
+  sqlrmtip      String? @db.NVarChar(255)
+  sqlrmtsapwd   String? @db.NVarChar(255)
+  sqlrmtnotes   String? @db.NVarChar(255)
+  MachineNote   String? @db.NVarChar(255)
+  Laptop        Float?
+  bacs          String? @db.NVarChar(255)
+  Entryno       Float?
+}
+
+model CustLog {
+  id        Int       @id(map: "PK_CustLog") @default(autoincrement())
+  type      String?   @db.NVarChar(50)
+  customer  String    @db.NVarChar(50)
+  item      String?   @db.NVarChar(50)
+  email     String?   @db.NVarChar(256)
+  subject   String?   @db.NVarChar(256)
+  details   String?   @db.Text
+  warnlevel Int       @default(0, map: "DF_Table_1_status")
+  handledby String?   @db.NVarChar(50)
+  mailhash  String?   @db.NChar(256)
+  created   DateTime  @default(now(), map: "DF_CustLog_created") @db.DateTime
+  happened  DateTime? @db.DateTime
+}
+
+model Custmast {
+  Invoice_Number                       Int       @id(map: "PK_Custmast") @default(autoincrement()) @map("Invoice Number")
+  Customer                             String?   @db.NVarChar(50)
+  Total_of_Invoice                     Float?    @map("Total of Invoice") @db.Money
+  Date                                 DateTime? @db.DateTime
+  Delivery_Details_1                   String?   @map("Delivery Details 1") @db.NVarChar(50)
+  Delivery_Details_2                   String?   @map("Delivery Details 2") @db.NVarChar(50)
+  Processed                            Float?
+  Cost_of_Invoice                      Float?    @map("Cost of Invoice") @db.Money
+  duedate                              DateTime? @db.DateTime
+  information                          String?   @db.NVarChar(Max)
+  paid                                 Float?    @db.Money
+  Temppaid                             Float?    @db.Money
+  Job_Loc                              String?   @map("Job Loc") @db.NVarChar(50)
+  Order_No                             String?   @map("Order No") @db.NVarChar(50)
+  Discount                             String?   @db.NVarChar(50)
+  TAxno                                String?   @db.NVarChar(50)
+  Suppno                               Int?      @db.SmallInt
+  oldno                                Int?
+  prt                                  String?   @db.NVarChar(5)
+  Accede                               Float?    @db.Money
+  DBF                                  Float?    @db.Money
+  IdName                               String?   @db.NVarChar(30)
+  GST                                  Float?    @db.Money
+  Customer_Custmast_CustomerToCustomer Customer? @relation("Custmast_CustomerToCustomer", fields: [Customer], references: [Name], onDelete: NoAction, map: "FK_Custmast_Customer")
+}
+
+model Customer {
+  Name                                 String     @id(map: "PK_Customer") @db.NVarChar(50)
+  Print_Name                           String?    @map("Print Name") @db.NVarChar(50)
+  Contact                              String?    @db.NVarChar(50)
+  Address1                             String?    @db.NVarChar(50)
+  Address2                             String?    @db.NVarChar(50)
+  Address3                             String?    @db.NVarChar(50)
+  Post_Code                            String?    @map("Post Code") @db.NVarChar(50)
+  Post1                                String?    @db.NVarChar(50)
+  Post2                                String?    @db.NVarChar(50)
+  Post3                                String?    @db.NVarChar(50)
+  Fax                                  String?    @db.NVarChar(50)
+  Phone                                String?    @db.NVarChar(50)
+  Mobile                               String?    @db.NVarChar(50)
+  Email                                String?    @db.NVarChar(150)
+  ABN                                  String?    @db.NVarChar(15)
+  AfterHr                              String?    @db.NVarChar(50)
+  days                                 Float?
+  Current                              Float?     @db.Money
+  M7days                               Float?     @map("7days") @db.Money
+  M14days                              Float?     @map("14days") @db.Money
+  M28days                              Float?     @map("28days") @db.Money
+  Balance                              Float?
+  Invoice_this_month                   Float?     @map("Invoice this month")
+  Payments_this_month                  Float?     @map("Payments this month")
+  Level                                Float?
+  Market                               String?    @db.NVarChar(50)
+  SuppExpDt                            DateTime?  @db.DateTime
+  Supptype                             String?    @db.NVarChar(15)
+  HrsPerYr                             Float?     @db.Money
+  ContDate                             DateTime?  @db.DateTime
+  SupportBalance                       Float?     @db.Money
+  BulkSupport                          Float?     @db.Money
+  ServerDetails                        String?    @db.NVarChar(100)
+  username                             String?    @db.NVarChar(32)
+  password                             String?    @db.NVarChar(32)
+  ClientID                             Int        @default(autoincrement())
+  WebAddress                           String?    @db.NVarChar(50)
+  DNSuName                             String?    @db.NVarChar(50)
+  DNSPW                                String?    @db.NVarChar(50)
+  FTPuName                             String?    @db.NVarChar(50)
+  FTPPW                                String?    @db.NVarChar(50)
+  WebKey                               String?    @db.NVarChar(50)
+  AVuName                              String?    @db.NVarChar(50)
+  AVPW                                 String?    @db.NVarChar(50)
+  Notes                                String?    @db.NText
+  QuoteID                              Int?
+  MaintActive                          Int?       @default(0, map: "DF_Customer_MaintActive")
+  MaintStart                           DateTime?  @db.DateTime
+  MaintEnd                             DateTime?  @db.DateTime
+  BulkBuy                              Int?
+  BackActive                           Int?       @default(0, map: "DF_Customer_BackupActive")
+  BackStart                            DateTime?  @db.DateTime
+  BackEnd                              DateTime?  @db.DateTime
+  BackQtID                             Int?
+  SLockDate                            DateTime?  @db.DateTime
+  dataPath                             String?    @db.NVarChar(100)
+  Active                               Int        @default(0, map: "DF__Customer__Active__3FD07829")
+  LassSupport                          DateTime?
+  LastReview                           DateTime?
+  NonBill                              Int?
+  LastDirectContact                    DateTime?  @db.DateTime
+  Custmast_Custmast_CustomerToCustomer Custmast[] @relation("Custmast_CustomerToCustomer")
+  Machines_Machines_CustomerToCustomer Machines[] @relation("Machines_CustomerToCustomer")
+  Recmast_Recmast_CustomerToCustomer   Recmast[]  @relation("Recmast_CustomerToCustomer")
+  Support                              Support[]
+}
+
+model Custprod {
+  customer String? @db.NVarChar(50)
+  Product  String? @db.NVarChar(50)
+  Version  String? @db.NVarChar(50)
+  Patch    String? @db.NVarChar(50)
+  details  String? @db.NVarChar(Max)
+  transno  Int     @id(map: "PK_Custprod") @default(autoincrement())
+}
+
+model Custtran {
+  Invoice_Number     Float?  @map("Invoice Number")
+  Transaction_Number Int     @id(map: "PK_Custtran") @default(autoincrement()) @map("Transaction Number")
+  Stock_Code         String? @map("Stock Code") @db.NVarChar(50)
+  Details            String? @db.NVarChar(Max)
+  Qty                Float?
+  Price              Float?  @db.Money
+  Tax                Float?  @db.Money
+  Discper            Float?
+  Discount           Float?  @db.Money
+  Total              Float?  @db.Money
+  Tranproc           Float?
+  TotCost            Float?  @db.Money
+}
+
+model Debit_or_Credit {
+  Debit_or_Credit String @id(map: "PK_Debit or Credit") @map("Debit or Credit") @db.NVarChar(1)
+
+  @@map("Debit or Credit")
+}
+
+model Drives {
+  ID          Int     @id(map: "PK_Drives") @default(autoincrement())
+  Letter      String? @db.Char(3)
+  description String? @db.NText
+  path        String? @db.NText
+  CustID      Int?
+}
+
+model Employee {
+  EmpNo             String    @id(map: "PK_Employee") @db.NVarChar(50)
+  Name              String?   @db.NVarChar(50)
+  Address1          String?   @db.NVarChar(50)
+  Address2          String?   @db.NVarChar(50)
+  Address3          String?   @db.NVarChar(50)
+  Phone             String?   @db.NVarChar(50)
+  DOB               DateTime? @db.DateTime
+  TaxNo             String?   @db.NVarChar(50)
+  TaxScale          String?   @db.NVarChar(50)
+  Hols              Boolean
+  Holsdue           Float?
+  Commenced         DateTime? @db.DateTime
+  Terminated        DateTime? @db.DateTime
+  SickAvail         Float?
+  rate              Float?    @db.Money
+  Notes             String?   @db.NVarChar(Max)
+  wc                Float?
+  super             Float?
+  Add1              Float?    @db.Money
+  add1det           String?   @db.NVarChar(50)
+  Tax1              Boolean
+  Add2              Float?    @db.Money
+  Tax2              Boolean
+  add2det           String?   @db.NVarChar(50)
+  Add3              Float?    @db.Money
+  Tax3              Boolean
+  add3det           String?   @db.NVarChar(50)
+  add4              Float?    @db.Money
+  Tax4              Boolean
+  add4det           String?   @db.NVarChar(50)
+  ded1              Float?    @db.Money
+  dtax1             Boolean
+  ded1det           String?   @db.NVarChar(50)
+  ded2              Float?    @db.Money
+  dtax2             Boolean
+  ded2det           String?   @db.NVarChar(50)
+  ded3              Float?    @db.Money
+  dtax3             Boolean
+  ded3det           String?   @db.NVarChar(50)
+  ded4              Float?    @db.Money
+  dtax4             Boolean
+  ded4det           String?   @db.NVarChar(50)
+  SuperFund         String?   @db.NVarChar(50)
+  SuperNo           String?   @db.NVarChar(50)
+  Company           String?   @db.NVarChar(10)
+  NameTitle         String?   @db.NVarChar(25)
+  FamilyName        String?   @db.NVarChar(25)
+  GivenName         String?   @db.NVarChar(25)
+  Gender            String?   @db.NVarChar(25)
+  Suburb            String?   @db.NVarChar(25)
+  State             String?   @db.NVarChar(25)
+  Postcode          String?   @db.NVarChar(25)
+  Country           String?   @db.NVarChar(25)
+  TerminationReason String?   @db.NVarChar(25)
+  FundId            String?   @db.NVarChar(25)
+  FundEmployerId    String?   @db.NVarChar(25)
+}
+
+model Goals {
+  Programmer    String?   @db.NVarChar(50)
+  DateAdded     DateTime? @db.DateTime
+  Goal          String?   @db.NText
+  DateCompleted DateTime? @db.DateTime
+  Superfeedback String?   @db.NText
+  Notes         String?   @db.NText
+  GoalID        Int       @id(map: "PK_Goals") @default(autoincrement())
+}
+
+model Header {
+  HeaderID Int     @id(map: "PK_Header") @default(autoincrement())
+  Header   String? @db.NVarChar(50)
+  Order    Int?
+  Areas    Areas[]
+}
+
+model issue {
+  auto       Int       @id(map: "PK_issue") @default(autoincrement())
+  issue      String?   @db.NVarChar(50)
+  date_began DateTime? @map("date began") @db.DateTime
+}
+
+model Kits {
+  kitcode String? @db.NVarChar(50)
+  item    String? @db.NVarChar(50)
+  qty     Float?
+  transno Int     @id(map: "PK_Kits") @default(autoincrement())
+}
+
+model KPI {
+  Programmer String   @db.NVarChar(50)
+  WEDate     DateTime @db.DateTime
+  Client     String   @db.NVarChar(50)
+  Emailed    Boolean? @default(false, map: "DF_KPI_Emailed")
+
+  @@id([Programmer, WEDate, Client], map: "PK_KPI")
+}
+
+model Licences {
+  Name     String?   @db.NVarChar(50)
+  LicKey   String    @id(map: "PK_Licences") @db.NVarChar(50)
+  MachID   Int?
+  ClientID Int?
+  Expiry   DateTime? @db.DateTime
+}
+
+model Locations {
+  LocID    Int     @id(map: "PK_Locations") @default(autoincrement())
+  Location String? @db.NVarChar(50)
+  ClientID Int?
+}
+
+model MachineFiles {
+  ID        Int       @id(map: "PK_MachineFiles") @default(autoincrement())
+  fileName  String?   @db.NVarChar(Max)
+  machineID Int?
+  date      DateTime? @db.DateTime
+}
+
+model Machines {
+  MachineID                            Int               @id(map: "PK_Machines") @default(autoincrement())
+  Machine                              String?           @db.NVarChar(50)
+  Customer                             String?           @db.NVarChar(50)
+  PurchDate                            DateTime?         @db.SmallDateTime
+  InvNo                                Int?
+  Creditor                             String?           @db.NVarChar(50)
+  Details                              String?           @db.NText
+  SerialNo                             String?           @db.NVarChar(50)
+  LocationID                           Int?
+  Username                             String?           @db.NVarChar(50)
+  Password                             String?           @db.NVarChar(50)
+  TermID                               Int?
+  ServTag                              String?           @db.NVarChar(50)
+  RemoteIP                             String?           @db.NVarChar(20)
+  LocalIP                              String?           @db.NVarChar(20)
+  Email                                String?           @db.NVarChar(50)
+  DomainUser                           String?           @db.NVarChar(50)
+  DomainPW                             String?           @db.NVarChar(50)
+  OSystem                              String?           @db.NVarChar(100)
+  Notes                                String?           @db.NText
+  OldUser                              String?           @db.NVarChar(50)
+  OldPW                                String?           @db.NVarChar(50)
+  ProxyIP                              String?           @db.NVarChar(20)
+  ProxyPort                            String?           @db.NChar(8)
+  SQLIP                                String?           @db.NVarChar(20)
+  HostIP                               String?           @db.NVarChar(20)
+  SQLPW                                String?           @db.NVarChar(20)
+  DbName                               String?           @db.NVarChar(50)
+  DbUser                               String?           @db.NVarChar(50)
+  DbPW                                 String?           @db.NVarChar(50)
+  ClientID                             Int?
+  Overview                             String?           @db.NText
+  Customer_Machines_CustomerToCustomer Customer?         @relation("Machines_CustomerToCustomer", fields: [Customer], references: [Name], onDelete: NoAction, map: "FK_Machines_Customer")
+  ProjectMachines                      ProjectMachines[]
+}
+
+model NetworkReps {
+  NetRepsID Int       @id(map: "PK_NetworkReps") @default(autoincrement())
+  Date      DateTime? @db.SmallDateTime
+  Type      String?   @db.NVarChar(30)
+  ClientID  Int
+  FileName  String?   @db.NVarChar(Max)
+}
+
+model Payments {
+  Cofa_Name      String?   @map("Cofa Name") @db.NVarChar(50)
+  Creditor       String?   @db.NVarChar(50)
+  Date           DateTime? @db.DateTime
+  Pay_Current    Float?    @map("Pay Current") @db.Money
+  Pay_Seven      Float?    @map("Pay Seven") @db.Money
+  Pay_Fourteen   Float?    @map("Pay Fourteen") @db.Money
+  Pay_twenty_One Float?    @map("Pay twenty One") @db.Money
+  Processed      Float?
+  Amount         Float?    @db.Money
+  Cheque_Number  String?   @map("Cheque Number") @db.NVarChar(50)
+  dESC           String?   @db.NVarChar(50)
+  tno            Int       @id(map: "PK_Payments") @default(autoincrement())
+}
+
+model PaypalLog {
+  Product     String?   @db.VarChar(50)
+  Client      String?   @db.VarChar(50)
+  Amount      Decimal?  @db.Decimal(21, 4)
+  TaxAmount   Decimal?  @db.Decimal(21, 4)
+  TaxType     String?   @db.VarChar(50)
+  created_at  DateTime?
+  updated_at  DateTime?
+  id          Int       @id(map: "PaypalLog_pk") @default(autoincrement())
+  AgreementId String?   @db.VarChar(50)
+  PaymentId   String?   @db.VarChar(50)
+}
+
+model payroll {
+  payno    Int       @id(map: "PK_payroll") @default(autoincrement())
+  empno    String?   @db.NVarChar(50)
+  date     DateTime? @db.DateTime
+  normal   Float?
+  RDOTaken Float?
+  RDODue   Float?
+  RDOAcc   Float?
+  half     Float?
+  double   Float?
+  sick     Float?
+  hols     Float?
+  holload  Float?    @db.Money
+  paygross Float?    @db.Money
+  padd1    Float?    @db.Money
+  padd2    Float?    @db.Money
+  padd3    Float?    @db.Money
+  padd4    Float?    @db.Money
+  pded1    Float?    @db.Money
+  pded2    Float?    @db.Money
+  pded3    Float?    @db.Money
+  pded4    Float?    @db.Money
+  taxgross Float?    @db.Money
+  gross    Float?    @db.Money
+  net      Float?    @db.Money
+  tax      Float?    @db.Money
+  d100     Int?
+  d50      Float?
+  d20      Float?
+  d10      Float?
+  d5       Float?
+  d2       Float?
+  d1       Float?
+  c50      Int?
+  c20      Int?
+  c10      Int?
+  c5       Int?
+  Cash     Float?    @db.Money
+  bank     Float?    @db.Money
+}
+
+model Plans {
+  Transno      Int       @id(map: "PK_Plans") @default(autoincrement())
+  QuoteNo      String?   @db.NVarChar(15)
+  StageOrder   Int?
+  StageDetails String?   @db.NVarChar(50)
+  SubSteps     String?   @db.NVarChar(50)
+  Programmer   String?   @db.NVarChar(50)
+  Hours        Decimal?  @db.Decimal(18, 4)
+  ExpStart     DateTime? @db.DateTime
+  Expected     DateTime? @db.DateTime
+  Completed    DateTime? @db.DateTime
+  Notes        String?   @db.NText
+  Type         String?   @db.NVarChar(1)
+  ItemStatus   String?   @db.NVarChar(10)
+}
+
+model POSTCODE {
+  SUBURB  String? @db.NVarChar(35)
+  PCODE   Float?
+  transno Int     @id(map: "PK_POSTCODE") @default(autoincrement())
+}
+
+model Product {
+  product String @id(map: "PK_Product") @db.NVarChar(50)
+}
+
+model Programmer {
+  Programmer                             String    @id(map: "PK_Programmer") @db.NVarChar(50)
+  InvRate                                Float?    @db.Money
+  CostBasis                              Float?    @db.Money
+  TeamId                                 Int?
+  Email                                  String?   @db.NVarChar(250)
+  Password                               String?   @db.NVarChar(250)
+  TargetHours                            Float?    @default(0, map: "DF_Programmer_TargetHours")
+  Active                                 Int?      @default(1, map: "DF_Programmer_Active")
+  WeekHours                              Float?    @default(38, map: "DF_Programmer_WeekHours")
+  Payroll                                Float?    @db.Money
+  HoursLY                                Float?
+  GrossLY                                Float?
+  Display                                String?   @db.NVarChar(100)
+  Support_Support_ProgrammerToProgrammer Support[] @relation("Support_ProgrammerToProgrammer")
+}
+
+model Project {
+  Project_id      Int               @id(map: "PK_Project") @unique(map: "Project_Project_id_IDX") @default(autoincrement())
+  Project_Name    String            @db.NVarChar(50)
+  Client          String?           @db.NVarChar(50)
+  Description     String?           @db.NText
+  SourceLoc       String?           @db.NVarChar(250)
+  DeployLoc       String?           @db.NVarChar(250)
+  AccessInfo      String?           @db.NText
+  Architecture    String?           @db.NVarChar(100)
+  Deployment      String?           @db.NText
+  ProjectMachines ProjectMachines[]
+}
+
+model ProjectMachines {
+  Project_id Int
+  MachineID  Int
+  UsedAs     String
+  Machines   Machines @relation(fields: [MachineID], references: [MachineID])
+  Project    Project  @relation(fields: [Project_id], references: [Project_id])
+
+  @@unique([Project_id, MachineID])
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model propel_migration {
+  version Int? @default(0, map: "DF__propel_mi__versi__05A3D694")
+
+  @@ignore
+}
+
+model Questions {
+  QuestID      Int         @id(map: "PK_Questions") @default(autoincrement())
+  Question     String?     @db.NVarChar(80)
+  AreaID       Int
+  ListOrder    Int
+  SBTiming     Int?
+  MBTIming     Int?
+  TechLevel    Int?
+  ExpectMins   Int?
+  Termtype     Int
+  ExpectedCost Float?      @db.Money
+  PerCharge    Float?
+  Select       Boolean?
+  Areas        Areas       @relation(fields: [AreaID], references: [AreaID], onUpdate: NoAction, map: "FK_Questions_Areas")
+  Technician   Technician? @relation(fields: [TechLevel], references: [TechID], onDelete: NoAction, onUpdate: NoAction, map: "FK_Questions_Technician")
+  Terminals    Terminals   @relation(fields: [Termtype], references: [TermID], onUpdate: NoAction, map: "FK_Questions_Terminals")
+  quoteTran    quoteTran[]
+}
+
+model Quote {
+  QtID        Int         @id(map: "PK_Quote") @default(autoincrement())
+  Contact     String      @db.NVarChar(50)
+  Company     String      @db.NVarChar(80)
+  phone       String      @db.NVarChar(50)
+  email       String      @db.NVarChar(150)
+  DateQuoted  DateTime?   @db.DateTime
+  AllowEmails Int?        @default(0, map: "DF_Quote_AllowEmails")
+  Servers     Int?
+  WStations   Int?
+  Quoted      Float?      @db.Money
+  Emailed     Int?
+  quoteTran   quoteTran[]
+}
+
+model Quotes {
+  QuoteRefNo   String    @id(map: "PK_Quotes") @db.NVarChar(15)
+  Client       String?   @db.NVarChar(50)
+  Date         DateTime? @db.DateTime
+  Amount       Float?    @db.Money
+  terms        String?   @db.NVarChar(Max)
+  Active       Boolean
+  minHours     Float?    @default(0, map: "DF_Quotes_minHours")
+  maxHours     Float?    @default(0, map: "DF_Quotes_maxHours")
+  Hype1        String?   @db.NVarChar(200)
+  Hype2        String?   @db.NVarChar(200)
+  Reviewer     String?   @db.NVarChar(50)
+  LastReviewed DateTime? @db.DateTime
+  DInvoice     Float?
+  Dsupport     Float?
+  Dquoted      Float?
+  Dmarketing   Float?
+  Invoice      Float?
+  Support      Float?
+  Quoted       Float?
+  Marketing    Float?
+  Status       String?   @db.NVarChar(50)
+  DueDate      DateTime? @db.DateTime
+  Priority     Int?
+  LastSupport  DateTime? @db.DateTime
+  QuOrEst      String?   @db.NVarChar(20)
+  AltProg1     String?   @db.NVarChar(50)
+  AltProg2     String?   @db.NVarChar(50)
+  AltProg3     String?   @db.NVarChar(50)
+  PlanDone     String?   @db.NVarChar(3)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model quotes2 {
+  QuoteRefNo   String    @db.NVarChar(15)
+  Client       String?   @db.NVarChar(50)
+  Date         DateTime? @db.DateTime
+  Amount       Float?    @db.Money
+  terms        String?   @db.NVarChar(Max)
+  Active       Boolean
+  minHours     Int?
+  maxHours     Int?
+  Hype1        String?   @db.NVarChar(200)
+  Hype2        String?   @db.NVarChar(200)
+  Reviewer     String?   @db.NVarChar(50)
+  LastReviewed DateTime? @db.DateTime
+  DInvoice     Float?
+  Dsupport     Float?
+  Dquoted      Float?
+  Dmarketing   Float?
+  Invoice      Float?
+  Support      Float?
+  Quoted       Float?
+  Marketing    Float?
+  Status       String?   @db.NVarChar(50)
+  DueDate      DateTime? @db.DateTime
+  Priority     Int?
+
+  @@ignore
+}
+
+model quoteTran {
+  AnsID     Int       @id(map: "PK_quoteTran") @default(autoincrement())
+  QuoteID   Int
+  QuestID   Int
+  TimingID  Int
+  CostPer   Float?    @db.Money
+  Costquote Float?    @db.Money
+  NextDue   DateTime? @db.SmallDateTime
+  Questions Questions @relation(fields: [QuestID], references: [QuestID], onUpdate: NoAction, map: "FK_quoteTran_Questions")
+  Quote     Quote     @relation(fields: [QuoteID], references: [QtID], onUpdate: NoAction, map: "FK_quoteTran_Quote")
+  Timing    Timing    @relation(fields: [TimingID], references: [timeID], onUpdate: NoAction, map: "FK_quoteTran_Timing")
+}
+
+model Recmast {
+  Transno                             Int       @id(map: "PK_Recmast") @default(autoincrement())
+  Cofa_Name                           String?   @map("Cofa Name") @db.NVarChar(50)
+  Customer                            String?   @db.NVarChar(50)
+  Date                                DateTime? @db.DateTime
+  Processed                           Float?
+  Amount                              Float?    @db.Money
+  temp                                Int?
+  Customer_Recmast_CustomerToCustomer Customer? @relation("Recmast_CustomerToCustomer", fields: [Customer], references: [Name], onDelete: NoAction, map: "FK_Recmast_Customer")
+}
+
+model Rectran {
+  Transno Int?
+  Invno   Int?
+  InvDue  Float? @db.Money
+  Paidnow Float? @db.Money
+  Proc    Float?
+  Tno     Int    @id(map: "PK_Rectran") @default(autoincrement())
+}
+
+model Reminder {
+  Messno    Int       @id(map: "PK_Reminder") @default(autoincrement())
+  User      String?   @db.NVarChar(50)
+  Message   String?   @db.NVarChar(255)
+  BeginTime DateTime? @db.DateTime
+  EndDate   DateTime? @db.DateTime
+  LastYes   DateTime? @db.DateTime
+  Live      String?   @db.NVarChar(1)
+}
+
+model Sper {
+  SPNo        Int     @id(map: "PK_Sper") @default(autoincrement())
+  SalesPerson String? @db.NVarChar(50)
+}
+
+model SperClients {
+  ClId        Int       @id(map: "PK_SperClients") @default(autoincrement())
+  Client      String?   @db.NVarChar(50)
+  TradingName String?   @db.NVarChar(50)
+  BusName     String?   @db.NVarChar(50)
+  Contact     String?   @db.NVarChar(50)
+  Position    String?   @db.NVarChar(50)
+  Add1        String?   @db.NVarChar(50)
+  add2        String?   @db.NVarChar(50)
+  add3        String?   @db.NVarChar(50)
+  country     String?   @db.NVarChar(50)
+  phone       String?   @db.NVarChar(50)
+  Mobile      String?   @db.NVarChar(50)
+  Fax         String?   @db.NVarChar(50)
+  Email       String?   @db.NVarChar(80)
+  datemet     DateTime? @db.SmallDateTime
+  nextDate    DateTime? @db.SmallDateTime
+  Reason      Int?
+  Gyms        Int?
+  Web         String?   @db.NVarChar(80)
+  Comments    String?   @db.NText
+}
+
+model SperCont {
+  ContID   Int     @id(map: "PK_SperCont") @default(autoincrement())
+  contType String? @db.NVarChar(50)
+}
+
+model SperREasons {
+  reasonID Int     @id(map: "PK_SperREasons") @default(autoincrement())
+  Reason   String? @db.NVarChar(50)
+}
+
+model SperTran {
+  transno      Int       @id(map: "PK_SperTran") @default(autoincrement())
+  clientID     Int?
+  TranDate     DateTime? @db.SmallDateTime
+  ReasonID     Int?
+  ContType     Int?
+  Comments     String?   @db.NText
+  NextContDate DateTime? @db.SmallDateTime
+  NextReasonID Int?
+  Sper         Int?
+  flag         String?   @db.NVarChar(1)
+}
+
+model Status {
+  Code    String  @id(map: "PK_Status") @db.NVarChar(6)
+  Details String? @db.NVarChar(50)
+}
+
+model SupInv {
+  Description String? @db.NVarChar(50)
+  Qty         Int?
+  Price       Float?  @db.Money
+  Total       Float?  @db.Money
+  GST         Float?  @db.Money
+  Flag        String? @db.NVarChar(1)
+  SupNo       Int?    @db.SmallInt
+  Transno     Int     @id(map: "PK_SupInv") @default(autoincrement())
+  Order       Int?
+}
+
+model Support {
+  Client                                    String?    @db.NVarChar(50)
+  Date                                      DateTime?  @db.DateTime
+  Programmer                                String     @db.NVarChar(50)
+  Start_Time                                DateTime?  @map("Start Time") @db.DateTime
+  Stop_Time                                 DateTime?  @map("Stop Time") @db.DateTime
+  Job                                       String?    @db.NVarChar(Max)
+  Comments                                  String?    @db.NVarChar(Max)
+  InvoiceNo                                 Int?
+  ChargeTime                                Float?
+  InvRate                                   Float?     @db.Money
+  CallOut                                   Int?
+  AutoNo                                    Int        @id(map: "PK_Support") @default(autoincrement())
+  Invhours                                  Float?
+  SuppHours                                 Float?
+  Prodhours                                 Float?
+  NonBill                                   Float?
+  MaintHours                                Float?
+  NonProdHours                              Float?
+  NonPaid                                   Float?
+  Project                                   String?    @db.NVarChar(50)
+  PurchValue                                Float?     @db.Money
+  Process                                   Int?
+  SuppDebit                                 Float?     @db.Money
+  SuppCredit                                Float?     @default(0, map: "DF_Support_SuppCredit") @db.Money
+  Issue                                     Int?
+  planno                                    Int?
+  FreeCall                                  Int?
+  MachineID                                 Int?
+  Machine                                   String?    @db.NVarChar(50)
+  Task                                      String?    @db.NVarChar(100)
+  MaintComments                             String?    @db.NVarChar(Max)
+  Recommend                                 String?    @db.NVarChar(Max)
+  UpcomIssues                               String?    @db.NVarChar(Max)
+  remote                                    Int?
+  DirectChat                                Boolean?   @default(false, map: "DF_Support_DirectChat")
+  DirectComment                             String?    @db.NText
+  Customer                                  Customer?  @relation(fields: [Client], references: [Name], onDelete: NoAction, map: "FK_Support_Customer")
+  Programmer_Support_ProgrammerToProgrammer Programmer @relation("Support_ProgrammerToProgrammer", fields: [Programmer], references: [Programmer], map: "FK_Support_Programmer")
+
+  @@index([Programmer, Date], map: "nci_wi_Support_EFC276A1-8C4F-47C9-AE37-B5B570C43E92")
+}
+
+model sysdiagrams {
+  name         String @db.NVarChar(128)
+  principal_id Int
+  diagram_id   Int    @id(map: "PK__sysdiagr__C2B05B619FCE7666") @default(autoincrement())
+  version      Int?
+  definition   Bytes?
+
+  @@unique([principal_id, name], map: "UK_principal_name")
+}
+
+model TaskCompleted {
+  QuoteID    Int?
+  QuestionID Int       @id(map: "PK_TaskCompleted")
+  date       DateTime? @db.SmallDateTime
+  MachineID  Int?
+  SupportID  Int?
+  Pass       Int?
+}
+
+model Tasks {
+  transno         Int       @id(map: "PK_Tasks") @default(autoincrement())
+  DateDone        DateTime? @db.DateTime
+  Done            Boolean
+  TaskNotes       String?   @db.NText
+  programmer      String?   @db.NVarChar(50)
+  Customer        String?   @db.NVarChar(50)
+  Quoteref        String?   @db.NVarChar(15)
+  Priority        Int?
+  RelProg         String?   @db.NVarChar(50)
+  DaysBillable    Float?
+  DaysNonBillable Float?
+  DueDate         DateTime? @db.DateTime
+  MoreDetails     String?   @db.NVarChar(Max)
+}
+
+model Team {
+  TeamId Int     @id(map: "PK_Team")
+  Leader String? @db.NVarChar(50)
+  Name   String? @db.NVarChar(50)
+}
+
+model Technician {
+  TechID     Int         @id(map: "PK_Technician")
+  TechType   String?     @db.NVarChar(15)
+  TechCost   Float?      @db.Money
+  TechCharge Float?      @db.Money
+  Questions  Questions[]
+}
+
+model Terminals {
+  TermID    Int         @id(map: "PK_Terminals")
+  TermType  String?     @db.NVarChar(15)
+  Questions Questions[]
+}
+
+model Timing {
+  timeID      Int         @id(map: "PK_Timing")
+  TimeTxt     String?     @db.NVarChar(15)
+  TImedays    Int?
+  chargeBasis Int?
+  quoteTran   quoteTran[]
+}
+
+model userInfo {
+  id         Int     @id(map: "PK_userInfo") @default(autoincrement())
+  username   String? @db.NVarChar(50)
+  password   String? @db.NVarChar(50)
+  nameGiven  String? @db.NVarChar(50)
+  nameFamily String? @db.NVarChar(50)
+}
+
+model versions {
+  Version String  @id(map: "PK_versions") @db.NVarChar(50)
+  Product String? @db.NVarChar(50)
+}
+
+model Whiteboard {
+  Person  String? @db.NVarChar(50)
+  Memo    String? @db.Text
+  transno Int     @id(map: "PK_Whiteboard") @default(autoincrement())
+}
+
+model Wireless {
+  SSID       String  @id(map: "PK_Wireless") @db.NVarChar(50)
+  Password   String? @db.NVarChar(50)
+  EncrypType String? @db.NVarChar(50)
+  CustID     Int
+}

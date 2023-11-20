@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+
+current_dir="$(pwd)"
+base_dir="/home/chris"
+relative_path=""
+if [[ "$current_dir" == "$base_dir"* ]]; then
+  relative_path="${current_dir#$base_dir}/"
+  relative_path="${relative_path#/}"
+fi
+
+
+cd $( dirname $(realpath "${BASH_SOURCE}") )
+ 
+bun --watch ../sandbox/src/cli.tsx $current_dir "$@"
