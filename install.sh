@@ -13,6 +13,7 @@ sir_nvim_path="$(pwd)/nvim"
 sir_bashrc_path="$(pwd)/bashrc"
 sir_fishconfig_path="$(pwd)/config.fish"
 sir_tmux_path="$(pwd)/tmux/.tmux.conf"
+sir_ill_path="$(pwd)/illdo/ill.sh"
 
 check_color_support() {
     if [[ -t 1 ]]; then
@@ -143,5 +144,7 @@ echo "# ${GREEN} Misc Dirs... ${NC}"
 mkdir "$HOME/workbox"
 mkdir "$HOME/sandbox"
 echo "done"
+
+ln -s "~/bin/ill""$sir_ill_path"  
 
 echo "${YELLOW} Done for now... ${NC}"
