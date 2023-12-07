@@ -7,6 +7,10 @@ fi
 wait_for_apt_lock() {
     local timeout=60  # Set the timeout value in seconds
 
+    echo "Checking Lock..."
+    sleep 1
+    ps aux | grep '[a]pt'
+    echo '..'
     while fuser /var/lib/apt/lists/lock >/dev/null 2>&1 ; do
         sleep 1
         ((timeout--))
@@ -14,6 +18,7 @@ wait_for_apt_lock() {
             echo "Timeout waiting for lock. Exiting."
             exit 1
         fi
+        echo .
     done
 }
 
