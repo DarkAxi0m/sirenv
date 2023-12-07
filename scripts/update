@@ -4,13 +4,27 @@ if [[ $EUID -ne 0 ]]; then
     exec sudo "$0" "$@"
 fi
 
+wait_for_apt_lock() {
+    local timeout=60  # Set the timeout value in seconds
+
+    while fuser /var/lib/apt/lists/lock >/dev/null 2>&1 ; do
+        sleep 1
+        ((timeout--))
+        if [ $timeout -eq 0 ]; then
+            echo "Timeout waiting for lock. Exiting."
+            exit 1
+        fi
+    done
+}
+
+
 if command -v nala >/dev/null 2>&1; then
     nala update
-    sleep 1
+    wait_for_apt_lock
     nala upgrade
 else
     apt update
-    sleep 1
+    wait_for_apt_lock
     apt upgrade -y
 fi
 
