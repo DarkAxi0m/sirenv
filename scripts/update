@@ -6,9 +6,11 @@ fi
 
 if command -v nala >/dev/null 2>&1; then
     nala update
+    sleep 1
     nala upgrade
 else
     apt update
+    sleep 1
     apt upgrade -y
 fi
 

@@ -1,2 +1,2 @@
 print "hello chris"
---require("chris.packer")
+require("chris.packer")
