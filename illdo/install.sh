@@ -4,7 +4,7 @@
 echo "Checking Ill is install"
 
 
-link_path=~/bin/ill
+link_path=~/bin/i
 ill_path="$(pwd)/ill.sh"
 
 

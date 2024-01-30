@@ -5,6 +5,7 @@ nvim_path="$HOME/.config/nvim"
 bashrc_path="$HOME/.bashrc"
 fishconfig_path="$HOME/.config/fish/config.fish"
 tmux_path="$HOME/.tmux.config"
+wezterm_path="$HOME/.wezterm.lua"
 
 
 PACKER_PATH="$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim"
@@ -14,6 +15,8 @@ sir_bashrc_path="$(pwd)/bashrc"
 sir_fishconfig_path="$(pwd)/config.fish"
 sir_tmux_path="$(pwd)/tmux/.tmux.conf"
 sir_ill_path="$(pwd)/illdo/ill.sh"
+sir_archive="$(pwd)/scripts/archive.sh"
+sir_wezterm="$(pwd)/wezterm.lua"
 
 check_color_support() {
     if [[ -t 1 ]]; then
@@ -146,5 +149,7 @@ mkdir "$HOME/sandbox"
 echo "done"
 
 ln -s "~/bin/ill""$sir_ill_path"  
+ln -s "$sir_archive" "~/.local/bin/archive"
+ln -s "$sir_wezterm" "$wezterm_path"
 
 echo "${YELLOW} Done for now... ${NC}"
