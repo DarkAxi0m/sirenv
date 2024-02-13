@@ -22,11 +22,17 @@ fi
 
 
 param1=$1
-firsttest="$link_dir/$1.sh"
+
+if [ "$param1" = "s" ]; then
+    param1=$(ls "$link_dir"/*.sh | grep -Ev "(ill.sh|install.sh)" | xargs -n 1 basename -s .sh | fzf)
+fi
+
+
+firsttest="$link_dir/$param1.sh"
 
 
 if [ -e "$firsttest" ]; then
-   figlet " $1!"
+   figlet " $param1"
    source "$firsttest" 
    exit 1
 fi
