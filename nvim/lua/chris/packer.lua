@@ -1,4 +1,4 @@
--- Only required if you have packer configured as `opt`
+--- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
@@ -51,8 +51,47 @@ use {
 
   use 'wakatime/vim-wakatime'
 
---  use 'ThePrimeagen/vim-be-good'
+  use 'ThePrimeagen/vim-be-good'
 
+  use {
+  "nomnivore/ollama.nvim",
+  requires = {
+    "nvim-lua/plenary.nvim"
+  },
+
+  cmd = { "Ollama", "OllamaModel", "OllamaServe", "OllamaServeStop" }
+
+
+
+
+}
+
+use({
+  "epwalsh/obsidian.nvim",
+  tag = "*",  -- recommended, use latest release instead of latest commit
+  requires = {
+    -- Required.
+    "nvim-lua/plenary.nvim",
+
+    -- see below for full list of optional dependencies 👇
+  },
+  config = function()
+    require("obsidian").setup({
+      workspaces = {
+        {
+          name = "personal",
+          path = "~/vaults/personal",
+        },
+        {
+          name = "work",
+          path = "~/vaults/work",
+        },
+      },
+
+      -- see below for full list of options 👇
+    })
+  end,
+})
 end)
 
 

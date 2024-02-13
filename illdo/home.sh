@@ -11,7 +11,7 @@ if [[ ! "$response" =~ ^[Yy]$ ]]; then
     exit 1
 fi
 
-
+lock &
 mydev stop &
 
 echo "Todo: Sortout backups" &
