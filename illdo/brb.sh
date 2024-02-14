@@ -1,14 +1,8 @@
 #!/bin/bash
 
-access_token=$(az account get-access-token --resource https://presence.teams.microsoft.com --query accessToken --output tsv)
-api_url="https://presence.teams.microsoft.com/v1/me/forceavailability/"
-presence_status='{"availability": "BeRightBack"}'
-curl  --location --request PUT  "$api_url" --header "Authorization: Bearer $access_token" --header 'Content-Type: application/json' --data-raw "$presence_status" &
-
+./teamsstatus.sh BeRightBack &
 xdotool key XF86AudioPlay &
-
 amixer set Master mute &
-
 gsettings set org.gnome.desktop.background picture-uri-dark file:///home/chris/Pictures/Wallpapers/wallpaperflare.com_wallpaper2.jpg &
 
 wait
