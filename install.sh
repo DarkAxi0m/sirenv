@@ -69,7 +69,7 @@ if command -v sudo &>/dev/null; then
 
 echo "# ${GREEN}installing somethings i use often etc....${NC}"
 sudo apt-get update
-sudo apt-get install -y git curl btop tmux jq figlet fzf wget screen
+sudo apt-get install -y git curl btop tmux jq figlet fzf wget screen zoxide
 
 
 echo ${GREEN}
