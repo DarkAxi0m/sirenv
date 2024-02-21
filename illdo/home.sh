@@ -13,7 +13,7 @@ fi
 
 lock &
 mydev stop &
-
+teamsstatus.sh offline &
 echo "Todo: Sortout backups" &
 
 

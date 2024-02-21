@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./teamsstatus.sh BeRightBack &
+teamsstatus.sh BeRightBack &
 xdotool key XF86AudioPlay &
 amixer set Master mute &
 gsettings set org.gnome.desktop.background picture-uri-dark file:///home/chris/Pictures/Wallpapers/wallpaperflare.com_wallpaper2.jpg &
