@@ -9,7 +9,7 @@ extract_domain() {
     domain="${url#*://}"
     # Remove path
     domain="${domain%%/*}"
-    echo "🔍 $domain"
+    echo "$domain"
 }
 
 prompt_download_type() {
@@ -31,14 +31,15 @@ prompt_download_path() {
 get_url_from_clipboard() {
     local clipboard_content
     clipboard_content=$(xclip -selection clipboard -o)
-    echo "📋 $clipboard_content"
+    echo "$clipboard_content"
 }
-
 hr() {
     local term_width
     term_width=$(tput cols)
-    printf '🔲%*s\n' "$term_width" '' | tr ' ' '-'
+    for ((i=0; i<$term_width; i++)); do echo -n "‗"; done; echo
+
 }
+
 
 command=""
 url=$(get_url_from_clipboard)
