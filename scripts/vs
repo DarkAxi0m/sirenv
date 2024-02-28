@@ -1,6 +1,7 @@
 #!/bin/bash
 # Split the current window vertically
 tmux split-window -h
+tmux resize-pane -x40% -L
 
 # Run 'vim .' on the left pane
 tmux select-pane -L
@@ -9,4 +10,5 @@ tmux send-keys "vim ." C-m
 # Run 'ls' on the right pane
 tmux select-pane -R
 tmux send-keys "ls" C-m
+
 

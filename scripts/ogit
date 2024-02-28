@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# Function to run the command X times
+run_command() {
+    local command="$1"
+    local times="$2"
+    
+    for (( i=1; i<=$times; i++ )); do
+        echo "Output $i:"
+        eval "$command"
+        echo
+    done
+}
+
+# Function to select one of the outputs
+select_output() {
+    local times="$1"
+    local selected_output
+    
+    while true; do
+        read -p "Enter the number of the output you want to select (1-$times): " selection
+        if [[ $selection =~ ^[0-9]+$ ]] && (( selection >= 1 && selection <= times )); then
+            selected_output=$(eval "echo \$output_$selection")
+            break
+        else
+            echo "Invalid selection. Please enter a number between 1 and $times."
+        fi
+    done
+    
+    echo "$selected_output"
+}
+
+command_to_run="ollama run gitcommits \"$(git diff --ignore-space-at-eol)\""
+num_times=5
+run_command "$command_to_run" $num_times
+for (( i=1; i<=$num_times; i++ )); do
+    eval "output_$i=$(eval "$command_to_run")"
+done
+
+selected_output=$(select_output $num_times)
+
+echo "Selected output: $selected_output"
+
