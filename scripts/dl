@@ -9,20 +9,20 @@ extract_domain() {
     domain="${url#*://}"
     # Remove path
     domain="${domain%%/*}"
-    echo "$domain"
+    echo "🔍 $domain"
 }
 
 prompt_download_type() {
     local domain="$1"
     local download_type
-    read -p "Enter download type for domain '$domain' (curl, wget, youtube-dl): " download_type
+    read -p "📥 Enter download type for domain '$domain' (curl, wget, youtube-dl): " download_type
     echo "$download_type"
 }
 
 prompt_download_path() {
     local domain="$1"
     local download_path
-    read -p "Enter default download path for domain '$domain' (default: ~/Downloads): " download_path
+    read -p "📂 Enter default download path for domain '$domain' (default: ~/Downloads): " download_path
     # Use default path if user input is empty
     download_path="${download_path:-$HOME/Downloads}"
     echo "$download_path"
@@ -31,13 +31,13 @@ prompt_download_path() {
 get_url_from_clipboard() {
     local clipboard_content
     clipboard_content=$(xclip -selection clipboard -o)
-    echo "$clipboard_content"
+    echo "📋 $clipboard_content"
 }
 
 hr() {
     local term_width
     term_width=$(tput cols)
-    printf '%*s\n' "$term_width" '' | tr ' ' '-'
+    printf '🔲%*s\n' "$term_width" '' | tr ' ' '-'
 }
 
 command=""
@@ -51,12 +51,11 @@ elif [ "$#" -eq 2 ]; then
 fi
 
 if [[ $url == *[$'\n\t\r']* ]]; then
-    echo $url
+    echo "🚫 $url"
     hr
     echo "Error: url contains one or more common control characters"
     exit 1
 fi
-
 
 # Set default download directory to user's Downloads directory
 download_path="$HOME/Downloads"
@@ -69,14 +68,14 @@ if [ -f "$mapping_file" ] && grep -q "^$domain " "$mapping_file"; then
     # Get download type and default path from mapping file
     download_type=$(grep "^$domain " "$mapping_file" | awk '{print $2}')
     download_path=$(grep "^$domain " "$mapping_file" | awk '{print $3}')
-    echo "Using stored download type '$download_type' and default path '$download_path' for domain: $domain"
+    echo "✅ Using stored download type '$download_type' and default path '$download_path' for domain: $domain"
 else
     # Prompt user for download type and default path if domain not found in mapping file
     download_type=$(prompt_download_type "$domain")
     download_path=$(prompt_download_path "$domain")
     # Update mapping file with the new domain, download type, and default path
     echo "$domain $download_type $download_path" >> "$mapping_file"
-    echo "Added domain '$domain' with download type '$download_type' and default path '$download_path' to $mapping_file"
+    echo "🆕 Added domain '$domain' with download type '$download_type' and default path '$download_path' to $mapping_file"
 fi
 
 hr
@@ -93,27 +92,26 @@ case "$command" in
         ;;
 esac
 
-echo "Downloading to $download_path"
+echo "📥 Downloading to $download_path"
 
 # Perform action based on the download type
 case "$download_type" in
     curl)
-        echo "Using curl to download $url"
+        echo "🌀 Using curl to download $url"
         ;;
     wget)
-        echo "Using wget to download $url"
+        echo "🌐 Using wget to download $url"
         ;;
     youtube-dl)
-        echo "Using youtube-dl to download $url"
+        echo "🎵 Using youtube-dl to download $url"
         
         cd $download_path
         python3 "$HOME/sirenv/bin/youtube-dl" "$url"
 
         ;;
     *)
-        echo "Invalid download type: $download_type"
+        echo "❌ Invalid download type: $download_type"
         exit 1
         ;;
 esac
-
 
