@@ -2,3 +2,4 @@
 nvim/plugin/packer_compiled.lua
 sandbox/.sandbox.json
 scripts/.env
+scripts/.download_mappings.txt
