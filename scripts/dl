@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mapping_file=".download_mappings.txt"
+mapping_file="/home/chris/sirenv/scripts/.download_mappings.txt"
 
 extract_domain() {
     local url="$1"
