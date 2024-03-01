@@ -4,7 +4,7 @@ vimrc_file="$HOME/.vimrc"
 nvim_path="$HOME/.config/nvim"
 bashrc_path="$HOME/.bashrc"
 fishconfig_path="$HOME/.config/fish/config.fish"
-tmux_path="$HOME/.tmux.config"
+config_path="$HOME/.config"
 wezterm_path="$HOME/.wezterm.lua"
 
 
@@ -13,7 +13,7 @@ PACKER_PATH="$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim"
 sir_nvim_path="$(pwd)/nvim"
 sir_bashrc_path="$(pwd)/bashrc"
 sir_fishconfig_path="$(pwd)/config.fish"
-sir_tmux_path="$(pwd)/tmux/.tmux.conf"
+sir_tmux_path="$(pwd)/tmux"
 sir_ill_path="$(pwd)/illdo/ill.sh"
 sir_archive="$(pwd)/scripts/archive.sh"
 sir_wezterm="$(pwd)/wezterm.lua"
@@ -138,8 +138,7 @@ else
 fi
 
 echo "# ${GREEN} tmux... ${NC}"
-ln -s "$sir_tmux_path" "$tmux_path"
-ln -s "$sir_tmux_path.local" "$tmux_path.local"
+ln -s "$sir_tmux_path" "$config_path"
 echo "Created symbolic link"
 
 
