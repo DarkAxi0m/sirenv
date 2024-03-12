@@ -33,7 +33,11 @@ selected_path="$1/$selected_folder"
 session_name=$(basename "$selected_folder")
 
 if session_exists "$session_name"; then
-  tmux attach-session -t "$session_name"
+    if [ -n "$TMUX" ]; then
+        tmux switch-client -t "$session_name"
+    else
+       tmux attach-session -t "$session_name"
+    fi
 else
   selected_path="$1/$selected_folder"
   echo

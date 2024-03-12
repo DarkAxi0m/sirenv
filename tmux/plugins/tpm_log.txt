@@ -662,3 +662,54 @@
 [2024-03-12 10:30:42.781]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
 [2024-03-12 10:30:42.982]	 Done.
 
+[2024-03-12 22:14:43.318]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-12 22:14:43.336]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-12 22:14:43.358]	 Already installed "tpm"
+[2024-03-12 22:14:43.366]	 Already installed "tmux-sensible"
+[2024-03-12 22:14:43.369]	 Already installed "tmux-sessionx"
+[2024-03-12 22:14:43.379]	 Done.
+
+[2024-03-12 22:39:20.261]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-12 22:39:20.304]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-12 22:39:20.384]	 Already installed "tpm"
+[2024-03-12 22:39:20.384]	 Already installed "tmux-sensible"
+[2024-03-12 22:39:20.385]	 Already installed "tmux-sessionx"
+[2024-03-12 22:39:20.430]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-12 22:39:20.473]	 Updating all plugins!
+[2024-03-12 22:39:20.473]	 
+[2024-03-12 22:39:21.282]	   "tmux-sensible" update success
+[2024-03-12 22:39:21.283]	     | Already up to date.
+[2024-03-12 22:39:21.760]	   "tmux-sessionx" update success
+[2024-03-12 22:39:21.762]	     | From https://github.com/omerxx/tmux-sessionx
+[2024-03-12 22:39:21.762]	     |    66d340e..e17400d  main       -> origin/main
+[2024-03-12 22:39:21.762]	     | Updating 66d340e..e17400d
+[2024-03-12 22:39:21.762]	     | Fast-forward
+[2024-03-12 22:39:21.762]	     |  README.md | 62 +++++++++++++++++++++++++++++++++++++-------------------------
+[2024-03-12 22:39:21.762]	     |  1 file changed, 37 insertions(+), 25 deletions(-)
+[2024-03-12 22:39:25.036]	   "tpm" update success
+[2024-03-12 22:39:25.041]	     | Already up to date.
+[2024-03-12 22:39:25.041]	     | Submodule 'lib/tmux-test' (https://github.com/tmux-plugins/tmux-test.git) registered for path 'lib/tmux-test'
+[2024-03-12 22:39:25.041]	     | Cloning into '/home/chris/sirenv/tmux/plugins/tpm/lib/tmux-test'...
+[2024-03-12 22:39:25.041]	     | From https://github.com/tmux-plugins/tmux-test
+[2024-03-12 22:39:25.041]	     |  * branch            33fa65fbfb72ba6dd106c21bf5ee6cc353ecdbb6 -> FETCH_HEAD
+[2024-03-12 22:39:25.041]	     | Submodule path 'lib/tmux-test': checked out '33fa65fbfb72ba6dd106c21bf5ee6cc353ecdbb6'
+[2024-03-12 22:39:25.087]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-12 22:39:25.208]	 Done.
+
+[2024-03-13 09:44:29.393]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-13 09:44:29.403]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-13 09:44:29.421]	 Already installed "tpm"
+[2024-03-13 09:44:29.422]	 Already installed "tmux-sensible"
+[2024-03-13 09:44:29.422]	 Already installed "tmux-sessionx"
+[2024-03-13 09:44:29.433]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-13 09:44:29.445]	 Updating all plugins!
+[2024-03-13 09:44:29.445]	 
+[2024-03-13 09:44:30.110]	   "tmux-sessionx" update success
+[2024-03-13 09:44:30.111]	     | Already up to date.
+[2024-03-13 09:44:30.113]	   "tmux-sensible" update success
+[2024-03-13 09:44:30.114]	     | Already up to date.
+[2024-03-13 09:44:30.119]	   "tpm" update success
+[2024-03-13 09:44:30.120]	     | Already up to date.
+[2024-03-13 09:44:30.129]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-13 09:44:30.160]	 Done.
+
