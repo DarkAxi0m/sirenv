@@ -1,37 +1,39 @@
 #!/bin/bash
 
+# Elevate privileges if not run as root
 if [[ $EUID -ne 0 ]]; then
     exec sudo "$0" "$@"
 fi
 
-wait_for_apt_lock() {
-    local timeout=60  # Set the timeout value in seconds
 
-    echo "Checking Lock..."
-    sleep 1
-    ps aux | grep '[a]pt'
-    echo '..'
-    while fuser /var/lib/apt/lists/lock >/dev/null 2>&1 ; do
+
+wait_for_apt_lock() {
+    local timeout=60  # Timeout in seconds
+    echo "Checking for apt lock..."
+    while fuser /var/lib/apt/lists/lock >/dev/null 2>&1; do
+        echo "Waiting for apt lock to be released... ($timeout seconds remaining)"
         sleep 1
         ((timeout--))
         if [ $timeout -eq 0 ]; then
-            echo "Timeout waiting for lock. Exiting."
+            echo "Timeout waiting for apt lock. Exiting."
             exit 1
         fi
-        echo .
     done
 }
 
+update_system() {
+    if command -v nala >/dev/null 2>&1; then
+        nala update && wait_for_apt_lock && nala upgrade
+    else
+        apt update && wait_for_apt_lock && apt upgrade -y
+    fi
+}
 
-if command -v nala >/dev/null 2>&1; then
-    nala update
-    wait_for_apt_lock
-    nala upgrade
-else
-    apt update
-    wait_for_apt_lock
-    apt upgrade -y
-fi
+  
+before=$(df -h / | awk 'NR==2{print $4}')
+update_system
+flatpak update -y
+after=$(df -h / | awk 'NR==2{print $4}')
 
-flatpak update
+echo -e "Disk space\n before: $before\n after: $after"
 
