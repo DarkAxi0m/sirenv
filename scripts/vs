@@ -1,4 +1,20 @@
 #!/bin/bash
+#
+
+if [ -z "$TMUX" ]; then
+  session_name=$(basename "$PWD")
+  if tmux has-session -t "$session_name" 2>/dev/null; then
+    tmux attach-session -t "$session_name"
+    exit 0
+  else
+    tmux new-session -d -s "$session_name"
+    tmux send-keys -t "$session_name" "$0" C-m
+    tmux attach-session -t "$session_name"
+    exit 0
+  fi
+fi
+
+
 # Split the current window vertically
 tmux split-window -h
 tmux resize-pane -x40% -L

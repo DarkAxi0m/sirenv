@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Elevate privileges if not run as root
+if [[ $EUID -ne 0 ]]; then
+    exec sudo "$0" "$@"
+fi
+
+
+before=$(df -h / | awk 'NR==2{print $4}')
+
+docker system prune -f
+apt autoclean && apt autoremove -y
+rm -rf ~/.cache/thumbnails/*
+npm cache clean --force
+flatpak uninstall --unused -y
+
+after=$(df -h / | awk 'NR==2{print $4}')
+echo -e "Disk space\n before: $before\n after: $after"
+
