@@ -91,6 +91,10 @@ case "$command" in
     music | m)
         download_path="/s/Music"
         ;;
+    update | u)
+        python3 "$HOME/sirenv/bin/youtube-dl" --update  
+        exit 1
+        ;;
 esac
 
 echo "📥 Downloading to $download_path"
@@ -107,7 +111,7 @@ case "$download_type" in
         echo "🎵 Using youtube-dl to download $url"
         
         cd $download_path
-        python3 "$HOME/sirenv/bin/youtube-dl" "$url"
+        python3 "$HOME/sirenv/bin/youtube-dl" --no-warnings --verbose --no-call-home "$url"
 
         ;;
     *)

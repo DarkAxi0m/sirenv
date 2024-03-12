@@ -69,7 +69,10 @@ if command -v sudo &>/dev/null; then
 
 echo "# ${GREEN}installing somethings i use often etc....${NC}"
 sudo apt-get update
-sudo apt-get install -y git curl btop tmux jq figlet fzf wget screen zoxide
+sudo apt-get install -y git curl btop tmux jq figlet fzf wget screen zoxide bat
+
+mkdir -p ~/.local/bin
+ln -s /usr/bin/batcat ~/.local/bin/bat
 
 
 echo ${GREEN}
@@ -78,6 +81,7 @@ echo "----------------"
 install/fish.sh
 install/neovim.sh
 install/lazygit.sh
+install/fzf.sh
 echo "----------------"
 touch "$vimrc_file"
 echo ${NC}

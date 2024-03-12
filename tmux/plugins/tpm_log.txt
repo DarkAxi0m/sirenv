@@ -1,0 +1,664 @@
+[2024-03-04 12:20:44.104]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible
+[2024-03-04 12:20:44.114]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-04 12:20:44.134]	 Installing "tmux-sensible"
+[2024-03-04 12:20:44.136]	 Already installed "tpm"
+[2024-03-04 12:20:45.121]	   "tmux-sensible" download success
+[2024-03-04 12:20:45.131]	 Done.
+
+[2024-03-04 12:21:55.163]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-04 12:21:55.181]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-04 12:21:55.204]	 Installing "tmux-sessionx"
+[2024-03-04 12:21:55.205]	 Already installed "tpm"
+[2024-03-04 12:21:55.206]	 Already installed "tmux-sensible"
+[2024-03-04 12:21:56.324]	   "tmux-sessionx" download success
+[2024-03-04 12:21:56.338]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-04 12:21:56.353]	 Updating all plugins!
+[2024-03-04 12:21:56.353]	 
+[2024-03-04 12:21:57.073]	   "tmux-sensible" update success
+[2024-03-04 12:21:57.076]	     | Already up to date.
+[2024-03-04 12:21:57.077]	   "tmux-sessionx" update success
+[2024-03-04 12:21:57.079]	     | Already up to date.
+[2024-03-04 12:22:00.180]	   "tpm" update success
+[2024-03-04 12:22:00.183]	     | Already up to date.
+[2024-03-04 12:22:00.183]	     | Submodule 'lib/tmux-test' (https://github.com/tmux-plugins/tmux-test.git) registered for path 'lib/tmux-test'
+[2024-03-04 12:22:00.183]	     | Cloning into '/home/chris/sirenv/tmux/plugins/tpm/lib/tmux-test'...
+[2024-03-04 12:22:00.183]	     | From https://github.com/tmux-plugins/tmux-test
+[2024-03-04 12:22:00.183]	     |  * branch            33fa65fbfb72ba6dd106c21bf5ee6cc353ecdbb6 -> FETCH_HEAD
+[2024-03-04 12:22:00.183]	     | Submodule path 'lib/tmux-test': checked out '33fa65fbfb72ba6dd106c21bf5ee6cc353ecdbb6'
+[2024-03-04 12:22:00.203]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-04 12:22:00.259]	 Done.
+
+[2024-03-04 12:22:42.293]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-04 12:22:42.304]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-04 12:22:42.325]	 Already installed "tpm"
+[2024-03-04 12:22:42.325]	 Already installed "tmux-sensible"
+[2024-03-04 12:22:42.325]	 Already installed "tmux-sessionx"
+[2024-03-04 12:22:42.336]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-04 12:22:42.532]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-04 12:22:42.545]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-04 12:22:42.564]	 Already installed "tpm"
+[2024-03-04 12:22:42.564]	 Already installed "tmux-sensible"
+[2024-03-04 12:22:42.564]	 Already installed "tmux-sessionx"
+[2024-03-04 12:22:42.575]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-04 12:22:42.347]	 Updating all plugins!
+[2024-03-04 12:22:42.347]	 
+[2024-03-04 12:22:43.044]	   "tmux-sensible" update success
+[2024-03-04 12:22:43.044]	   "tmux-sessionx" update success
+[2024-03-04 12:22:43.045]	     | Already up to date.
+[2024-03-04 12:22:43.045]	     | Already up to date.
+[2024-03-04 12:22:43.050]	   "tpm" update success
+[2024-03-04 12:22:43.051]	     | Already up to date.
+[2024-03-04 12:22:43.063]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-04 12:22:43.093]	 Done.
+
+[2024-03-04 12:22:42.586]	 Updating all plugins!
+[2024-03-04 12:22:42.586]	 
+[2024-03-04 12:22:43.254]	   "tmux-sessionx" update success
+[2024-03-04 12:22:43.255]	     | Already up to date.
+[2024-03-04 12:22:43.264]	   "tmux-sensible" update success
+[2024-03-04 12:22:43.265]	     | Already up to date.
+[2024-03-04 12:22:43.274]	   "tpm" update success
+[2024-03-04 12:22:43.275]	     | Already up to date.
+[2024-03-04 12:22:43.287]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-04 12:22:43.304]	 Removing "tmux-sensible"
+[2024-03-04 12:22:43.305]	   "tmux-sensible" clean success
+[2024-03-04 12:22:43.306]	 Removing "tmux-sessionx"
+[2024-03-04 12:22:43.307]	   "tmux-sessionx" clean success
+[2024-03-04 12:22:43.320]	 Done.
+
+[2024-03-04 12:22:43.346]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-04 12:22:43.357]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-04 12:22:43.384]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-04 12:22:43.396]	 Updating all plugins!
+[2024-03-04 12:22:43.396]	 
+[2024-03-04 12:22:43.412]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-04 12:22:43.440]	 Done.
+
+[2024-03-04 12:22:43.590]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-04 12:22:43.606]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-04 12:22:43.641]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-04 12:22:43.655]	 Updating all plugins!
+[2024-03-04 12:22:43.655]	 
+[2024-03-04 12:22:43.675]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-04 12:22:43.710]	 Done.
+
+[2024-03-04 12:23:00.613]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-04 12:23:00.625]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-04 12:23:00.644]	 Installing "tmux-sensible"
+[2024-03-04 12:23:00.645]	 Installing "tmux-sessionx"
+[2024-03-04 12:23:00.645]	 Already installed "tpm"
+[2024-03-04 12:23:01.583]	   "tmux-sensible" download success
+[2024-03-04 12:23:01.644]	   "tmux-sessionx" download success
+[2024-03-04 12:23:01.654]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-04 12:23:01.665]	 Updating all plugins!
+[2024-03-04 12:23:01.665]	 
+[2024-03-04 12:23:02.360]	   "tmux-sessionx" update success
+[2024-03-04 12:23:02.361]	     | Already up to date.
+[2024-03-04 12:23:02.379]	   "tmux-sensible" update success
+[2024-03-04 12:23:02.380]	     | Already up to date.
+[2024-03-04 12:23:02.390]	   "tpm" update success
+[2024-03-04 12:23:02.391]	     | Already up to date.
+[2024-03-04 12:23:02.403]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-04 12:23:02.434]	 Done.
+
+[2024-03-04 12:23:04.806]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-04 12:23:04.823]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-04 12:23:04.855]	 Already installed "tpm"
+[2024-03-04 12:23:04.855]	 Already installed "tmux-sensible"
+[2024-03-04 12:23:04.855]	 Already installed "tmux-sessionx"
+[2024-03-04 12:23:04.873]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-04 12:23:04.890]	 Updating all plugins!
+[2024-03-04 12:23:04.890]	 
+[2024-03-04 12:23:05.578]	   "tmux-sessionx" update success
+[2024-03-04 12:23:05.580]	     | Already up to date.
+[2024-03-04 12:23:05.580]	   "tmux-sensible" update success
+[2024-03-04 12:23:05.581]	     | Already up to date.
+[2024-03-04 12:23:05.585]	   "tpm" update success
+[2024-03-04 12:23:05.587]	     | Already up to date.
+[2024-03-04 12:23:05.599]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-04 12:23:05.629]	 Done.
+
+[2024-03-04 12:25:03.046]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-04 12:25:03.063]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-04 12:25:03.084]	 Already installed "tpm"
+[2024-03-04 12:25:03.084]	 Already installed "tmux-sensible"
+[2024-03-04 12:25:03.084]	 Already installed "tmux-sessionx"
+[2024-03-04 12:25:03.096]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-04 12:25:03.281]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-04 12:25:03.293]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-04 12:25:03.314]	 Already installed "tpm"
+[2024-03-04 12:25:03.314]	 Already installed "tmux-sessionx"
+[2024-03-04 12:25:03.314]	 Already installed "tmux-sensible"
+[2024-03-04 12:25:03.326]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-04 12:25:03.107]	 Updating all plugins!
+[2024-03-04 12:25:03.107]	 
+[2024-03-04 12:25:03.806]	   "tmux-sessionx" update success
+[2024-03-04 12:25:03.807]	     | Already up to date.
+[2024-03-04 12:25:03.811]	   "tmux-sensible" update success
+[2024-03-04 12:25:03.812]	     | Already up to date.
+[2024-03-04 12:25:03.814]	   "tpm" update success
+[2024-03-04 12:25:03.816]	     | Already up to date.
+[2024-03-04 12:25:03.828]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-04 12:25:03.860]	 Done.
+
+[2024-03-04 12:25:03.337]	 Updating all plugins!
+[2024-03-04 12:25:03.337]	 
+[2024-03-04 12:25:04.051]	   "tmux-sessionx" update success
+[2024-03-04 12:25:04.055]	     | Already up to date.
+[2024-03-04 12:25:04.072]	   "tmux-sensible" update success
+[2024-03-04 12:25:04.075]	     | Already up to date.
+[2024-03-04 12:25:04.079]	   "tpm" update success
+[2024-03-04 12:25:04.083]	     | Already up to date.
+[2024-03-04 12:25:04.109]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-04 12:25:04.131]	 Removing "tmux-sensible"
+[2024-03-04 12:25:04.132]	   "tmux-sensible" clean success
+[2024-03-04 12:25:04.133]	 Removing "tmux-sessionx"
+[2024-03-04 12:25:04.134]	   "tmux-sessionx" clean success
+[2024-03-04 12:25:04.147]	 Done.
+
+[2024-03-04 12:25:27.527]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-04 12:25:27.541]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-04 12:25:27.693]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-04 12:25:27.705]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-04 12:25:27.725]	 Already installed "tpm"
+[2024-03-04 12:25:27.726]	 Already installed "tmux-sensible"
+[2024-03-04 12:25:27.726]	 Already installed "tmux-sessionx"
+[2024-03-04 12:25:27.737]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-04 12:25:27.561]	 Installing "tmux-sensible"
+[2024-03-04 12:25:27.561]	 Installing "tmux-sessionx"
+[2024-03-04 12:25:27.562]	 Already installed "tpm"
+[2024-03-04 12:25:28.486]	   "tmux-sensible" download success
+[2024-03-04 12:25:28.576]	   "tmux-sessionx" download success
+[2024-03-04 12:25:28.594]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-04 12:25:27.749]	 Updating all plugins!
+[2024-03-04 12:25:27.749]	 
+[2024-03-04 12:25:28.487]	   "tpm" update success
+[2024-03-04 12:25:28.488]	     | Already up to date.
+[2024-03-04 12:25:28.752]	   "tmux-sensible" update fail
+[2024-03-04 12:25:28.754]	     | From https://github.com/tmux-plugins/tmux-sensible
+[2024-03-04 12:25:28.754]	     |  * branch            HEAD       -> FETCH_HEAD
+[2024-03-04 12:25:28.754]	     | error: The following untracked working tree files would be overwritten by merge:
+[2024-03-04 12:25:28.754]	     | 	.gitattributes
+[2024-03-04 12:25:28.754]	     | 	CHANGELOG.md
+[2024-03-04 12:25:28.754]	     | 	LICENSE.md
+[2024-03-04 12:25:28.754]	     | 	README.md
+[2024-03-04 12:25:28.754]	     | 	sensible.tmux
+[2024-03-04 12:25:28.754]	     | Please move or remove them before you merge.
+[2024-03-04 12:25:28.754]	     | Aborting
+[2024-03-04 12:25:28.824]	   "tmux-sessionx" update fail
+[2024-03-04 12:25:28.825]	     | From https://github.com/omerxx/tmux-sessionx
+[2024-03-04 12:25:28.825]	     |  * branch            HEAD       -> FETCH_HEAD
+[2024-03-04 12:25:28.825]	     | error: The following untracked working tree files would be overwritten by merge:
+[2024-03-04 12:25:28.825]	     | 	.gitignore
+[2024-03-04 12:25:28.825]	     | 	LICENSE
+[2024-03-04 12:25:28.825]	     | 	README.md
+[2024-03-04 12:25:28.825]	     | 	flake.lock
+[2024-03-04 12:25:28.825]	     | 	flake.nix
+[2024-03-04 12:25:28.825]	     | 	img/sessionxv2.png
+[2024-03-04 12:25:28.825]	     | 	scripts/preview.sh
+[2024-03-04 12:25:28.825]	     | 	scripts/reload_sessions.sh
+[2024-03-04 12:25:28.825]	     | 	scripts/sessionx.sh
+[2024-03-04 12:25:28.825]	     | 	sessionx.tmux
+[2024-03-04 12:25:28.825]	     | Please move or remove them before you merge.
+[2024-03-04 12:25:28.825]	     | Aborting
+[2024-03-04 12:25:28.834]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-04 12:25:28.859]	 Done.
+
+[2024-03-04 12:25:28.613]	 Updating all plugins!
+[2024-03-04 12:25:28.613]	 
+[2024-03-04 12:25:29.275]	   "tmux-sessionx" update success
+[2024-03-04 12:25:29.276]	     | Already up to date.
+[2024-03-04 12:25:29.287]	   "tmux-sensible" update success
+[2024-03-04 12:25:29.288]	     | Already up to date.
+[2024-03-04 12:25:29.299]	   "tpm" update success
+[2024-03-04 12:25:29.301]	     | Already up to date.
+[2024-03-04 12:25:29.313]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-04 12:25:29.330]	 Removing "tmux-sensible"
+[2024-03-04 12:25:29.331]	   "tmux-sensible" clean success
+[2024-03-04 12:25:29.332]	 Removing "tmux-sessionx"
+[2024-03-04 12:25:29.334]	   "tmux-sessionx" clean success
+[2024-03-04 12:25:29.346]	 Done.
+
+[2024-03-04 12:26:46.403]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-04 12:26:46.427]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-04 12:26:46.548]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-04 12:26:46.559]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-04 12:26:46.581]	 Already installed "tpm"
+[2024-03-04 12:26:46.581]	 Already installed "tmux-sensible"
+[2024-03-04 12:26:46.581]	 Already installed "tmux-sessionx"
+[2024-03-04 12:26:46.592]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-04 12:26:46.450]	 Installing "tmux-sensible"
+[2024-03-04 12:26:46.450]	 Installing "tmux-sessionx"
+[2024-03-04 12:26:46.451]	 Already installed "tpm"
+[2024-03-04 12:26:47.384]	   "tmux-sensible" download success
+[2024-03-04 12:26:47.680]	   "tmux-sessionx" download success
+[2024-03-04 12:26:47.703]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-04 12:26:46.603]	 Updating all plugins!
+[2024-03-04 12:26:46.603]	 
+[2024-03-04 12:26:47.367]	   "tpm" update success
+[2024-03-04 12:26:47.368]	     | Already up to date.
+[2024-03-04 12:26:47.606]	   "tmux-sensible" update fail
+[2024-03-04 12:26:47.607]	     | From https://github.com/tmux-plugins/tmux-sensible
+[2024-03-04 12:26:47.607]	     |  * branch            HEAD       -> FETCH_HEAD
+[2024-03-04 12:26:47.607]	     | error: The following untracked working tree files would be overwritten by merge:
+[2024-03-04 12:26:47.607]	     | 	.gitattributes
+[2024-03-04 12:26:47.607]	     | 	CHANGELOG.md
+[2024-03-04 12:26:47.607]	     | 	LICENSE.md
+[2024-03-04 12:26:47.607]	     | 	README.md
+[2024-03-04 12:26:47.607]	     | 	sensible.tmux
+[2024-03-04 12:26:47.607]	     | Please move or remove them before you merge.
+[2024-03-04 12:26:47.607]	     | Aborting
+[2024-03-04 12:26:47.729]	   "tmux-sessionx" update fail
+[2024-03-04 12:26:47.730]	     | From https://github.com/omerxx/tmux-sessionx
+[2024-03-04 12:26:47.730]	     |  * branch            HEAD       -> FETCH_HEAD
+[2024-03-04 12:26:47.730]	     | error: The following untracked working tree files would be overwritten by merge:
+[2024-03-04 12:26:47.730]	     | 	.gitignore
+[2024-03-04 12:26:47.730]	     | 	LICENSE
+[2024-03-04 12:26:47.730]	     | 	README.md
+[2024-03-04 12:26:47.730]	     | 	flake.lock
+[2024-03-04 12:26:47.730]	     | 	flake.nix
+[2024-03-04 12:26:47.730]	     | 	img/sessionxv2.png
+[2024-03-04 12:26:47.730]	     | 	scripts/preview.sh
+[2024-03-04 12:26:47.730]	     | 	scripts/reload_sessions.sh
+[2024-03-04 12:26:47.730]	     | 	scripts/sessionx.sh
+[2024-03-04 12:26:47.730]	     | 	sessionx.tmux
+[2024-03-04 12:26:47.730]	     | Please move or remove them before you merge.
+[2024-03-04 12:26:47.730]	     | Aborting
+[2024-03-04 12:26:47.740]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-04 12:26:47.771]	 Done.
+
+[2024-03-04 12:26:47.724]	 Updating all plugins!
+[2024-03-04 12:26:47.724]	 
+[2024-03-04 12:26:48.407]	   "tmux-sessionx" update success
+[2024-03-04 12:26:48.409]	     | Already up to date.
+[2024-03-04 12:26:48.429]	   "tpm" update success
+[2024-03-04 12:26:48.431]	     | Already up to date.
+[2024-03-04 12:26:48.963]	   "tmux-sensible" update success
+[2024-03-04 12:26:48.964]	     | From https://github.com/tmux-plugins/tmux-sensible
+[2024-03-04 12:26:48.964]	     |  * [new tag]         v1.0.0     -> v1.0.0
+[2024-03-04 12:26:48.964]	     |  * [new tag]         v1.1.0     -> v1.1.0
+[2024-03-04 12:26:48.964]	     |  * [new tag]         v2.0.0     -> v2.0.0
+[2024-03-04 12:26:48.964]	     |  * [new tag]         v2.1.0     -> v2.1.0
+[2024-03-04 12:26:48.964]	     |  * [new tag]         v2.2.0     -> v2.2.0
+[2024-03-04 12:26:48.964]	     |  * [new tag]         v2.3.0     -> v2.3.0
+[2024-03-04 12:26:48.964]	     |  * [new tag]         v3.0.0     -> v3.0.0
+[2024-03-04 12:26:48.964]	     | Already up to date.
+[2024-03-04 12:26:48.973]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-04 12:26:48.988]	 Removing "tmux-sensible"
+[2024-03-04 12:26:48.989]	   "tmux-sensible" clean success
+[2024-03-04 12:26:48.990]	 Removing "tmux-sessionx"
+[2024-03-04 12:26:48.991]	   "tmux-sessionx" clean success
+[2024-03-04 12:26:49.001]	 Done.
+
+[2024-03-04 12:51:46.590]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-04 12:51:46.599]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-04 12:51:46.753]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-04 12:51:46.765]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-04 12:51:46.785]	 Already installed "tpm"
+[2024-03-04 12:51:46.786]	 Already installed "tmux-sensible"
+[2024-03-04 12:51:46.786]	 Already installed "tmux-sessionx"
+[2024-03-04 12:51:46.797]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-04 12:51:46.619]	 Installing "tmux-sensible"
+[2024-03-04 12:51:46.619]	 Installing "tmux-sessionx"
+[2024-03-04 12:51:46.619]	 Already installed "tpm"
+[2024-03-04 12:51:47.594]	   "tmux-sensible" download success
+[2024-03-04 12:51:47.653]	   "tmux-sessionx" download success
+[2024-03-04 12:51:47.662]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-04 12:51:46.808]	 Updating all plugins!
+[2024-03-04 12:51:46.808]	 
+[2024-03-04 12:51:47.583]	   "tpm" update success
+[2024-03-04 12:51:47.584]	     | Already up to date.
+[2024-03-04 12:51:47.794]	   "tmux-sensible" update fail
+[2024-03-04 12:51:47.795]	     | From https://github.com/tmux-plugins/tmux-sensible
+[2024-03-04 12:51:47.795]	     |  * branch            HEAD       -> FETCH_HEAD
+[2024-03-04 12:51:47.795]	     | error: The following untracked working tree files would be overwritten by merge:
+[2024-03-04 12:51:47.795]	     | 	.gitattributes
+[2024-03-04 12:51:47.795]	     | 	CHANGELOG.md
+[2024-03-04 12:51:47.795]	     | 	LICENSE.md
+[2024-03-04 12:51:47.795]	     | 	README.md
+[2024-03-04 12:51:47.795]	     | 	sensible.tmux
+[2024-03-04 12:51:47.795]	     | Please move or remove them before you merge.
+[2024-03-04 12:51:47.795]	     | Aborting
+[2024-03-04 12:51:47.895]	   "tmux-sessionx" update fail
+[2024-03-04 12:51:47.896]	     | From https://github.com/omerxx/tmux-sessionx
+[2024-03-04 12:51:47.896]	     |  * branch            HEAD       -> FETCH_HEAD
+[2024-03-04 12:51:47.896]	     | error: The following untracked working tree files would be overwritten by merge:
+[2024-03-04 12:51:47.896]	     | 	.gitignore
+[2024-03-04 12:51:47.896]	     | 	LICENSE
+[2024-03-04 12:51:47.896]	     | 	README.md
+[2024-03-04 12:51:47.896]	     | 	flake.lock
+[2024-03-04 12:51:47.896]	     | 	flake.nix
+[2024-03-04 12:51:47.896]	     | 	img/sessionxv2.png
+[2024-03-04 12:51:47.896]	     | 	scripts/preview.sh
+[2024-03-04 12:51:47.896]	     | 	scripts/reload_sessions.sh
+[2024-03-04 12:51:47.896]	     | 	scripts/sessionx.sh
+[2024-03-04 12:51:47.896]	     | 	sessionx.tmux
+[2024-03-04 12:51:47.896]	     | Please move or remove them before you merge.
+[2024-03-04 12:51:47.897]	     | Aborting
+[2024-03-04 12:51:47.907]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-04 12:51:47.938]	 Done.
+
+[2024-03-04 12:51:47.674]	 Updating all plugins!
+[2024-03-04 12:51:47.674]	 
+[2024-03-04 12:51:48.400]	   "tmux-sessionx" update success
+[2024-03-04 12:51:48.405]	     | Already up to date.
+[2024-03-04 12:51:48.432]	   "tmux-sensible" update success
+[2024-03-04 12:51:48.435]	   "tpm" update success
+[2024-03-04 12:51:48.437]	     | Already up to date.
+[2024-03-04 12:51:48.441]	     | Already up to date.
+[2024-03-04 12:51:48.472]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-04 12:51:48.492]	 Removing "tmux-sensible"
+[2024-03-04 12:51:48.493]	   "tmux-sensible" clean success
+[2024-03-04 12:51:48.494]	 Removing "tmux-sessionx"
+[2024-03-04 12:51:48.496]	   "tmux-sessionx" clean success
+[2024-03-04 12:51:48.508]	 Done.
+
+[2024-03-04 12:52:06.663]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-04 12:52:06.674]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-04 12:52:06.948]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-04 12:52:06.960]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-04 12:52:06.983]	 Already installed "tpm"
+[2024-03-04 12:52:06.983]	 Already installed "tmux-sensible"
+[2024-03-04 12:52:06.983]	 Already installed "tmux-sessionx"
+[2024-03-04 12:52:06.996]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-04 12:52:06.694]	 Installing "tmux-sensible"
+[2024-03-04 12:52:06.694]	 Installing "tmux-sessionx"
+[2024-03-04 12:52:06.695]	 Already installed "tpm"
+[2024-03-04 12:52:07.664]	   "tmux-sensible" download success
+[2024-03-04 12:52:07.858]	   "tmux-sessionx" download success
+[2024-03-04 12:52:07.868]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-04 12:52:07.008]	 Updating all plugins!
+[2024-03-04 12:52:07.008]	 
+[2024-03-04 12:52:07.659]	   "tmux-sensible" update fail
+[2024-03-04 12:52:07.660]	     | From https://github.com/tmux-plugins/tmux-sensible
+[2024-03-04 12:52:07.660]	     |  * branch            HEAD       -> FETCH_HEAD
+[2024-03-04 12:52:07.660]	     | error: The following untracked working tree files would be overwritten by merge:
+[2024-03-04 12:52:07.660]	     | 	.gitattributes
+[2024-03-04 12:52:07.660]	     | 	CHANGELOG.md
+[2024-03-04 12:52:07.660]	     | 	LICENSE.md
+[2024-03-04 12:52:07.660]	     | 	README.md
+[2024-03-04 12:52:07.660]	     | 	sensible.tmux
+[2024-03-04 12:52:07.660]	     | Please move or remove them before you merge.
+[2024-03-04 12:52:07.660]	     | Aborting
+[2024-03-04 12:52:07.686]	   "tpm" update success
+[2024-03-04 12:52:07.687]	     | Already up to date.
+[2024-03-04 12:52:08.088]	   "tmux-sessionx" update fail
+[2024-03-04 12:52:08.089]	     | From https://github.com/omerxx/tmux-sessionx
+[2024-03-04 12:52:08.089]	     |  * branch            HEAD       -> FETCH_HEAD
+[2024-03-04 12:52:08.089]	     | error: The following untracked working tree files would be overwritten by merge:
+[2024-03-04 12:52:08.089]	     | 	.gitignore
+[2024-03-04 12:52:08.089]	     | 	LICENSE
+[2024-03-04 12:52:08.089]	     | 	README.md
+[2024-03-04 12:52:08.089]	     | 	flake.lock
+[2024-03-04 12:52:08.089]	     | 	flake.nix
+[2024-03-04 12:52:08.089]	     | 	img/sessionxv2.png
+[2024-03-04 12:52:08.089]	     | 	scripts/preview.sh
+[2024-03-04 12:52:08.089]	     | 	scripts/reload_sessions.sh
+[2024-03-04 12:52:08.089]	     | 	scripts/sessionx.sh
+[2024-03-04 12:52:08.089]	     | 	sessionx.tmux
+[2024-03-04 12:52:08.089]	     | Please move or remove them before you merge.
+[2024-03-04 12:52:08.089]	     | Aborting
+[2024-03-04 12:52:08.099]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-04 12:52:08.130]	 Done.
+
+[2024-03-04 12:52:07.876]	 Updating all plugins!
+[2024-03-04 12:52:07.876]	 
+[2024-03-04 12:52:08.641]	   "tmux-sessionx" update success
+[2024-03-04 12:52:08.646]	     | Already up to date.
+[2024-03-04 12:52:08.659]	   "tpm" update success
+[2024-03-04 12:52:08.661]	     | Already up to date.
+[2024-03-04 12:52:09.138]	   "tmux-sensible" update success
+[2024-03-04 12:52:09.144]	     | Already up to date.
+[2024-03-04 12:52:09.176]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-04 12:52:09.198]	 Removing "tmux-sensible"
+[2024-03-04 12:52:09.199]	   "tmux-sensible" clean success
+[2024-03-04 12:52:09.200]	 Removing "tmux-sessionx"
+[2024-03-04 12:52:09.202]	   "tmux-sessionx" clean success
+[2024-03-04 12:52:09.215]	 Done.
+
+[2024-03-04 12:53:24.676]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-04 12:53:24.698]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-04 12:53:24.736]	 Installing "tmux-sensible"
+[2024-03-04 12:53:24.736]	 Installing "tmux-sessionx"
+[2024-03-04 12:53:24.738]	 Already installed "tpm"
+[2024-03-04 12:53:25.691]	   "tmux-sensible" download success
+[2024-03-04 12:53:26.010]	   "tmux-sessionx" download success
+[2024-03-04 12:53:26.023]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-04 12:53:26.035]	 Updating all plugins!
+[2024-03-04 12:53:26.035]	 
+[2024-03-04 12:53:26.737]	   "tmux-sensible" update success
+[2024-03-04 12:53:26.741]	     | Already up to date.
+[2024-03-04 12:53:26.765]	   "tmux-sessionx" update success
+[2024-03-04 12:53:26.768]	     | Already up to date.
+[2024-03-04 12:53:26.792]	   "tpm" update success
+[2024-03-04 12:53:26.795]	     | Already up to date.
+[2024-03-04 12:53:26.821]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-04 12:53:26.877]	 Done.
+
+[2024-03-04 12:53:32.965]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-04 12:53:32.985]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-04 12:53:33.020]	 Already installed "tpm"
+[2024-03-04 12:53:33.021]	 Already installed "tmux-sensible"
+[2024-03-04 12:53:33.021]	 Already installed "tmux-sessionx"
+[2024-03-04 12:53:33.041]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-04 12:53:33.061]	 Updating all plugins!
+[2024-03-04 12:53:33.061]	 
+[2024-03-04 12:53:33.787]	   "tmux-sensible" update success
+[2024-03-04 12:53:33.789]	     | Already up to date.
+[2024-03-04 12:53:33.791]	   "tmux-sessionx" update success
+[2024-03-04 12:53:33.793]	     | Already up to date.
+[2024-03-04 12:53:33.799]	   "tpm" update success
+[2024-03-04 12:53:33.800]	     | Already up to date.
+[2024-03-04 12:53:33.814]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-04 12:53:33.847]	 Done.
+
+[2024-03-04 12:55:17.224]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-04 12:55:17.236]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-04 12:55:17.256]	 Already installed "tpm"
+[2024-03-04 12:55:17.256]	 Already installed "tmux-sensible"
+[2024-03-04 12:55:17.257]	 Already installed "tmux-sessionx"
+[2024-03-04 12:55:17.268]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-04 12:55:17.279]	 Updating all plugins!
+[2024-03-04 12:55:17.279]	 
+[2024-03-04 12:55:17.987]	   "tmux-sessionx" update success
+[2024-03-04 12:55:17.988]	   "tmux-sensible" update success
+[2024-03-04 12:55:17.988]	     | Already up to date.
+[2024-03-04 12:55:17.989]	     | Already up to date.
+[2024-03-04 12:55:17.996]	   "tpm" update success
+[2024-03-04 12:55:17.997]	     | Already up to date.
+[2024-03-04 12:55:18.009]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-04 12:55:18.040]	 Done.
+
+[2024-03-04 12:55:48.097]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-04 12:55:48.114]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-04 12:55:48.135]	 Already installed "tpm"
+[2024-03-04 12:55:48.135]	 Already installed "tmux-sensible"
+[2024-03-04 12:55:48.135]	 Already installed "tmux-sessionx"
+[2024-03-04 12:55:48.147]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-04 12:55:48.158]	 Updating all plugins!
+[2024-03-04 12:55:48.158]	 
+[2024-03-04 12:55:48.873]	   "tmux-sessionx" update success
+[2024-03-04 12:55:48.875]	     | Already up to date.
+[2024-03-04 12:55:48.877]	   "tmux-sensible" update success
+[2024-03-04 12:55:48.879]	     | Already up to date.
+[2024-03-04 12:55:48.882]	   "tpm" update success
+[2024-03-04 12:55:48.884]	     | Already up to date.
+[2024-03-04 12:55:48.895]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-04 12:55:48.928]	 Done.
+
+[2024-03-04 16:08:12.453]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-04 16:08:12.465]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-04 16:08:12.485]	 Already installed "tpm"
+[2024-03-04 16:08:12.486]	 Already installed "tmux-sessionx"
+[2024-03-04 16:08:12.486]	 Already installed "tmux-sensible"
+[2024-03-04 16:08:12.501]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-04 16:08:12.513]	 Updating all plugins!
+[2024-03-04 16:08:12.513]	 
+[2024-03-04 16:08:13.228]	   "tmux-sensible" update success
+[2024-03-04 16:08:13.229]	   "tmux-sessionx" update success
+[2024-03-04 16:08:13.229]	     | Already up to date.
+[2024-03-04 16:08:13.230]	     | Already up to date.
+[2024-03-04 16:08:13.236]	   "tpm" update success
+[2024-03-04 16:08:13.237]	     | Already up to date.
+[2024-03-04 16:08:13.247]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-04 16:08:13.278]	 Done.
+
+[2024-03-04 22:56:12.143]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-04 22:56:12.155]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-04 22:56:12.174]	 Already installed "tpm"
+[2024-03-04 22:56:12.176]	 Already installed "tmux-sensible"
+[2024-03-04 22:56:12.176]	 Already installed "tmux-sessionx"
+[2024-03-04 22:56:12.191]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-04 22:56:12.206]	 Updating all plugins!
+[2024-03-04 22:56:12.206]	 
+[2024-03-04 22:56:12.903]	   "tmux-sensible" update success
+[2024-03-04 22:56:12.904]	     | Already up to date.
+[2024-03-04 22:56:12.905]	   "tmux-sessionx" update success
+[2024-03-04 22:56:12.906]	     | Already up to date.
+[2024-03-04 22:56:12.911]	   "tpm" update success
+[2024-03-04 22:56:12.913]	     | Already up to date.
+[2024-03-04 22:56:12.922]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-04 22:56:12.952]	 Done.
+
+[2024-03-05 09:37:38.581]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-05 09:37:38.597]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-05 09:37:38.615]	 Already installed "tpm"
+[2024-03-05 09:37:38.617]	 Already installed "tmux-sensible"
+[2024-03-05 09:37:38.617]	 Already installed "tmux-sessionx"
+[2024-03-05 09:37:38.627]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-05 09:37:38.637]	 Updating all plugins!
+[2024-03-05 09:37:38.638]	 
+[2024-03-05 09:37:39.292]	   "tmux-sensible" update success
+[2024-03-05 09:37:39.293]	   "tmux-sessionx" update success
+[2024-03-05 09:37:39.293]	     | Already up to date.
+[2024-03-05 09:37:39.294]	     | Already up to date.
+[2024-03-05 09:37:39.302]	   "tpm" update success
+[2024-03-05 09:37:39.303]	     | Already up to date.
+[2024-03-05 09:37:39.313]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-05 09:37:39.343]	 Done.
+
+[2024-03-05 20:08:54.530]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-05 20:08:54.546]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-05 20:08:54.571]	 Already installed "tmux-sensible"
+[2024-03-05 20:08:54.571]	 Already installed "tmux-sessionx"
+[2024-03-05 20:08:54.571]	 Already installed "tpm"
+[2024-03-05 20:08:54.588]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-05 20:08:54.603]	 Updating all plugins!
+[2024-03-05 20:08:54.603]	 
+[2024-03-05 20:08:55.303]	   "tmux-sessionx" update success
+[2024-03-05 20:08:55.304]	     | Already up to date.
+[2024-03-05 20:08:55.311]	   "tpm" update success
+[2024-03-05 20:08:55.312]	     | Already up to date.
+[2024-03-05 20:08:55.334]	   "tmux-sensible" update success
+[2024-03-05 20:08:55.335]	     | Already up to date.
+[2024-03-05 20:08:55.345]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-05 20:08:55.377]	 Done.
+
+[2024-03-05 20:16:11.023]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-05 20:16:11.038]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-05 20:16:11.061]	 Already installed "tmux-sensible"
+[2024-03-05 20:16:11.061]	 Already installed "tpm"
+[2024-03-05 20:16:11.061]	 Already installed "tmux-sessionx"
+[2024-03-05 20:16:11.082]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-05 20:16:11.097]	 Updating all plugins!
+[2024-03-05 20:16:11.097]	 
+[2024-03-05 20:16:11.779]	   "tmux-sessionx" update success
+[2024-03-05 20:16:11.780]	     | Already up to date.
+[2024-03-05 20:16:11.803]	   "tmux-sensible" update success
+[2024-03-05 20:16:11.805]	     | Already up to date.
+[2024-03-05 20:16:11.806]	   "tpm" update success
+[2024-03-05 20:16:11.808]	     | Already up to date.
+[2024-03-05 20:16:11.820]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-05 20:16:11.851]	 Done.
+
+[2024-03-06 10:18:50.924]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-06 10:18:50.941]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-06 10:18:51.068]	 Already installed "tpm"
+[2024-03-06 10:18:51.295]	 Already installed "tmux-sensible"
+[2024-03-06 10:18:51.297]	 Already installed "tmux-sessionx"
+[2024-03-06 10:18:51.323]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-06 10:18:51.339]	 Updating all plugins!
+[2024-03-06 10:18:51.339]	 
+[2024-03-06 10:18:53.049]	   "tmux-sensible" update success
+[2024-03-06 10:18:53.049]	   "tmux-sessionx" update success
+[2024-03-06 10:18:53.051]	     | Already up to date.
+[2024-03-06 10:18:53.051]	     | Already up to date.
+[2024-03-06 10:18:53.113]	   "tpm" update success
+[2024-03-06 10:18:53.114]	     | Already up to date.
+[2024-03-06 10:18:53.124]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-06 10:18:53.177]	 Done.
+
+[2024-03-06 12:59:56.930]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-06 12:59:56.940]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-06 12:59:56.958]	 Already installed "tpm"
+[2024-03-06 12:59:56.959]	 Already installed "tmux-sensible"
+[2024-03-06 12:59:56.959]	 Already installed "tmux-sessionx"
+[2024-03-06 12:59:56.970]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-06 12:59:56.981]	 Updating all plugins!
+[2024-03-06 12:59:56.982]	 
+[2024-03-06 12:59:57.622]	   "tmux-sensible" update success
+[2024-03-06 12:59:57.622]	   "tmux-sessionx" update success
+[2024-03-06 12:59:57.623]	     | Already up to date.
+[2024-03-06 12:59:57.623]	     | Already up to date.
+[2024-03-06 12:59:57.642]	   "tpm" update success
+[2024-03-06 12:59:57.643]	     | Already up to date.
+[2024-03-06 12:59:57.653]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-06 12:59:57.684]	 Done.
+
+[2024-03-07 08:57:22.808]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-07 08:57:22.818]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-07 08:57:22.839]	 Already installed "tpm"
+[2024-03-07 08:57:22.839]	 Already installed "tmux-sensible"
+[2024-03-07 08:57:22.839]	 Already installed "tmux-sessionx"
+[2024-03-07 08:57:22.850]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-07 08:57:22.861]	 Updating all plugins!
+[2024-03-07 08:57:22.861]	 
+[2024-03-07 08:57:23.532]	   "tmux-sessionx" update success
+[2024-03-07 08:57:23.532]	   "tmux-sensible" update success
+[2024-03-07 08:57:23.533]	     | Already up to date.
+[2024-03-07 08:57:23.533]	     | Already up to date.
+[2024-03-07 08:57:23.579]	   "tpm" update success
+[2024-03-07 08:57:23.580]	     | Already up to date.
+[2024-03-07 08:57:23.590]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-07 08:57:23.619]	 Done.
+
+[2024-03-11 20:29:37.526]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-11 20:29:37.542]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-11 20:29:37.574]	 Already installed "tpm"
+[2024-03-11 20:29:37.596]	 Already installed "tmux-sensible"
+[2024-03-11 20:29:37.596]	 Already installed "tmux-sessionx"
+[2024-03-11 20:29:37.617]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-11 20:29:37.635]	 Updating all plugins!
+[2024-03-11 20:29:37.635]	 
+[2024-03-11 20:29:38.409]	   "tmux-sensible" update success
+[2024-03-11 20:29:38.410]	     | Already up to date.
+[2024-03-11 20:29:38.436]	   "tpm" update success
+[2024-03-11 20:29:38.437]	     | Already up to date.
+[2024-03-11 20:29:38.708]	   "tmux-sessionx" update success
+[2024-03-11 20:29:38.709]	     | From https://github.com/omerxx/tmux-sessionx
+[2024-03-11 20:29:38.709]	     |    e39372a..66d340e  main       -> origin/main
+[2024-03-11 20:29:38.709]	     | Updating e39372a..66d340e
+[2024-03-11 20:29:38.709]	     | Fast-forward
+[2024-03-11 20:29:38.709]	     |  README.md           | 4 +---
+[2024-03-11 20:29:38.709]	     |  scripts/sessionx.sh | 7 +++++--
+[2024-03-11 20:29:38.709]	     |  2 files changed, 6 insertions(+), 5 deletions(-)
+[2024-03-11 20:29:38.719]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-11 20:29:38.754]	 Done.
+
+[2024-03-12 10:30:40.507]	 List of discovered tpm plugins: tmux-plugins/tpm tmux-plugins/tmux-sensible omerxx/tmux-sessionx
+[2024-03-12 10:30:40.529]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/install_plugins
+[2024-03-12 10:30:40.572]	 Already installed "tpm"
+[2024-03-12 10:30:40.589]	 Already installed "tmux-sessionx"
+[2024-03-12 10:30:40.599]	 Already installed "tmux-sensible"
+[2024-03-12 10:30:40.609]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/update_plugins all
+[2024-03-12 10:30:40.625]	 Updating all plugins!
+[2024-03-12 10:30:40.625]	 
+[2024-03-12 10:30:42.356]	   "tmux-sessionx" update success
+[2024-03-12 10:30:42.356]	   "tmux-sensible" update success
+[2024-03-12 10:30:42.360]	     | Already up to date.
+[2024-03-12 10:30:42.361]	     | Already up to date.
+[2024-03-12 10:30:42.736]	   "tpm" update success
+[2024-03-12 10:30:42.741]	     | Already up to date.
+[2024-03-12 10:30:42.781]	 Invoking /home/chris/.config/tmux/plugins//tpm/bin/clean_plugins all
+[2024-03-12 10:30:42.982]	 Done.
+
