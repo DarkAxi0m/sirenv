@@ -44,7 +44,7 @@ else
 fi
 
 if [ -n "$TMUX" ]; then
-    echo "Switching to session $session_name"
+    echo "Switching to session $session_name"a
     tmux switch-client -t "$session_name"
 else
     echo "Attaching to session $session_name"
