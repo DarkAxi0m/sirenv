@@ -12,5 +12,9 @@ end
 bind \co "nautilus . &"
 bind \cf ~/sirenv/scripts/wfzf.sh
 
+set -Ux FLYCTL_INSTALL "/home/chris/.local/fly"
+set -U fish_user_paths $FLYCTL_INSTALL/bin $fish_user_paths
+
+
 set -U fish_user_paths ~/sirenv/scripts $fish_user_paths
 zoxide init fish | source
