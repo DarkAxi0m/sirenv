@@ -7,7 +7,7 @@ run_wfzf() {
 bind -x '"\C-f": run_wfzf'
 bind -x '"\C-o": nautilus .'
 
-eval "$(zoxide init bash)"
+#eval "$(zoxide init bash)"
 
 export EDITOR=nvim
 
