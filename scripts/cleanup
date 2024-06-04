@@ -1,19 +1,54 @@
 #!/bin/bash
 
-# Elevate privileges if not run as root
-if [[ $EUID -ne 0 ]]; then
-    exec sudo "$0" "$@"
+# Function to get directory size in MB
+get_dir_size() {
+    du -sm $1 | cut -f1
+}
+
+
+# Clear user's pip cache if pip is available
+if command -v pip &>/dev/null; then
+    echo "Purging user's pip cache..."
+    pip cache purge
+fi
+
+# Manually clear the pip cache if it wasn't cleared properly
+cache_dir="$HOME/.cache/pip"
+if [ -d "$cache_dir" ]; then
+    echo "Manually clearing pip cache..."
+    rm -rf "$cache_dir"
 fi
 
 
+
+# Ensure the script is run with root privileges for further cleaning
+if [[ $EUID -ne 0 ]]; then
+    echo "Re-running the script with root privileges for complete system cleanup..."
+    exec sudo "$0" "$@"
+fi
+
+echo "Calculating disk space before cleanup..."
 before=$(df -h / | awk 'NR==2{print $4}')
 
+# Continue with other system cleanup tasks
+echo "Running Docker system prune..."
 docker system prune -f
+
+echo "Cleaning up APT cache..."
 apt autoclean && apt autoremove -y
+
+echo "Removing thumbnail cache..."
 rm -rf ~/.cache/thumbnails/*
-npm cache clean --force
+
+# Uncomment the following line if you want to clean npm cache
+# echo "Cleaning npm cache..."
+# npm cache clean --force
+
+echo "Uninstalling unused Flatpak packages..."
 flatpak uninstall --unused -y
 
+echo "Calculating disk space after cleanup..."
 after=$(df -h / | awk 'NR==2{print $4}')
-echo -e "Disk space\n before: $before\n after: $after"
+
+echo -e "Disk space before: $before\nDisk space after: $after"
 

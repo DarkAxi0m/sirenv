@@ -7,6 +7,13 @@ vim.keymap.set({'n','v'}, "<leader>oG", ":<c-u>lua require('ollama').prompt('Gen
 
 
 
+-- next greatest remap ever : asbjornHaland
+vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
+
+
+-- This is going to get me cancelled --ThePrimeagen
+vim.keymap.set("i", "<C-c>", "<Esc>")
 
 
 

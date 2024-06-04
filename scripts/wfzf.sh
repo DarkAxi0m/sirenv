@@ -34,7 +34,6 @@ if session_exists "$session_name"; then
     echo "Session '$session_name' already exists."
 else
   tmux new-session -d -c "$selected_folder" -s "$session_name"
-  sleep 3  #fish is taking a while to start right now
 
 
 

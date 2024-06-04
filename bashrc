@@ -14,5 +14,6 @@ export EDITOR=nvim
 export FLYCTL_INSTALL="/home/chris/.local/fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
-
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$(go env GOPATH)/bin
 export PATH=~/sirenv/scripts:$PATH

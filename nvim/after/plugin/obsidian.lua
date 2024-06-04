@@ -1,6 +1,3 @@
-print "Helo obs"
-
-
 vim.opt.conceallevel = 2
 
 vim.keymap.set("n", "gf", function()

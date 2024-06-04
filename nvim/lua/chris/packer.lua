@@ -28,7 +28,15 @@ return require('packer').startup(function(use)
   use("tpope/vim-fugitive")
   use("nvim-treesitter/nvim-treesitter-context");
 
-use {
+use({
+	"L3MON4D3/LuaSnip",
+	-- follow latest release.
+	tag = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+	-- install jsregexp (optional!:).
+	run = "make install_jsregexp"
+})
+
+  use {
   'VonHeikemen/lsp-zero.nvim',
   branch = 'v3.x',
   requires = {
@@ -65,8 +73,10 @@ use {
 
 
 
+
 }
 
+--[[
 use({
   "epwalsh/obsidian.nvim",
   tag = "*",  -- recommended, use latest release instead of latest commit
@@ -93,7 +103,10 @@ use({
     })
   end,
 })
+--]]
+
 end)
+
 
 
 

@@ -8,31 +8,41 @@ fi
 
 
 wait_for_apt_lock() {
-    local timeout=60  # Timeout in seconds
-    echo "Checking for apt lock..."
-    while fuser /var/lib/apt/lists/lock >/dev/null 2>&1; do
-        echo "Waiting for apt lock to be released... ($timeout seconds remaining)"
-        sleep 1
-        ((timeout--))
-        if [ $timeout -eq 0 ]; then
-            echo "Timeout waiting for apt lock. Exiting."
-            exit 1
-        fi
+    figlet "Nala Update" "Checking for apt lock..."
+    lockfile="/var/lib/apt/lists/lock"
+    wait_time=5  # Adjust as needed
+
+    while fuser "$lockfile" &>/dev/null; do
+       echo "Waiting for lock to be cleared..."
+       sleep "$wait_time"
     done
+
+    echo "Lock is cleared. Proceeding with updates..."
 }
 
 update_system() {
     if command -v nala >/dev/null 2>&1; then
-        nala update && wait_for_apt_lock && nala upgrade
+        figlet "Nala Update"
+        nala update
+        wait_for_apt_lock 
+        figlet "Nala Upgrade"
+        nala upgrade
     else
-        apt update && wait_for_apt_lock && apt upgrade -y
+        figlet "apt Upgrade"
+        apt update 
+        wait_for_apt_lock
+        figlet "apt Upgrade"
+        apt upgrade -y
     fi
 }
 
   
 before=$(df -h / | awk 'NR==2{print $4}')
+ sleep 1
 update_system
+ sleep 1
 flatpak update -y
+ sleep 1
 after=$(df -h / | awk 'NR==2{print $4}')
 
 echo -e "Disk space\n before: $before\n after: $after"
