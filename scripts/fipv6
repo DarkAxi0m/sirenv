@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [[ $EUID -ne 0 ]]; then
+    echo "Re-running the script with root privileges..."
+    exec sudo "$0" "$@"
+fi
+
+
+echo 1 > /proc/sys/net/ipv6/conf/default/disable_ipv6
+echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
