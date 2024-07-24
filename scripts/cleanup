@@ -1,9 +1,14 @@
 #!/bin/bash
 
-# Function to get directory size in MB
+# Function to get directory size in McleanB
 get_dir_size() {
     du -sm $1 | cut -f1
 }
+
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+"$SCRIPT_DIR/empty_trash.sh"
+"$SCRIPT_DIR/sortage.sh"
+
 
 
 # Clear user's pip cache if pip is available

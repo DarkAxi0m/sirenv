@@ -15,6 +15,7 @@ sir_bashrc_path="$(pwd)/bashrc"
 sir_fishconfig_path="$(pwd)/config.fish"
 sir_tmux_path="$(pwd)/tmux"
 sir_ill_path="$(pwd)/illdo/ill.sh"
+sir_yazi_path="$(pwd)/bin/yazi/yazi"
 sir_archive="$(pwd)/scripts/archive.sh"
 sir_wezterm="$(pwd)/wezterm.lua"
 
@@ -151,7 +152,8 @@ mkdir "$HOME/workbox"
 mkdir "$HOME/sandbox"
 echo "done"
 
-ln -s "~/bin/ill""$sir_ill_path"  
+ln -s "~/bin/ill" "$sir_ill_path"  
+ln -s "~/bin/yazi" "$sir_yazi_path"  
 ln -s "$sir_archive" "~/.local/bin/archive"
 ln -s "$sir_wezterm" "$wezterm_path"
 

@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Check if file path is provided
+if [ -z "$1" ]; then
+  echo "Usage: $0 <file_to_send>"
+  exit 1
+fi
+
+# File to attach
+attachment="$1"
+
+# Recipient email
+to="recipient@example.com"
+
+# Sender email
+from="your-email@example.com"
+
+# Subject
+subject="File Attachment"
+
+# Email Body
+body="This is the body of the email."
+
+# SMTP settings
+smtp="smtp://192.168.15.6:25"
+smtp_user="your-smtp-username"
+smtp_pass="your-smtp-password"
+
+echo "$body" | mutt -s "$subject" -a "$attachment" -- $to \
+  --set smtp_url="$smtp" \
+  --set from="$from" \
+  --set realname="Your Name"
+
