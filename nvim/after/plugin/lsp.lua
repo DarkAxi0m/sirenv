@@ -17,15 +17,74 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {'tsserver', 'rust_analyzer','clangd','intelephense','gopls'},
+  ensure_installed = {"gopls", "golangci_lint_ls", 'clangd', 'intelephense', 'html', 'ts_ls'},
+  automatic_installation = true,
   handlers = {
     lsp_zero.default_setup,
     lua_ls = function()
       local lua_opts = lsp_zero.nvim_lua_ls()
       require('lspconfig').lua_ls.setup(lua_opts)
+
+    end,
+     golangci_lint_ls = function()
+      require("lspconfig").golangci_lint_ls.setup({})
     end,
   }
 })
+
+
+local lsp = require("lsp-zero").preset("recommended")
+
+lsp.configure("gopls", {
+  settings = {
+    gopls = {
+      staticcheck = true,
+      usePlaceholders = true,
+      analyses = { unusedparams = true },
+      completeUnimported = true,
+    },
+  },
+})
+
+lsp.setup()
+
+
+require('lspconfig').gopls.setup({
+  settings = {
+    gopls = {
+      gofumpt = true,       -- If you want gofumpt-style formatting
+      staticcheck = true,
+      completeUnimported = true,
+    },
+  },
+  on_attach = function(client, bufnr)
+    -- Format on save:
+    if client.server_capabilities.documentFormattingProvider then
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format()
+        end,
+      })
+    end
+  end
+})
+
+require'lspconfig'.ts_ls.setup{
+
+  on_attach = function(client, bufnr)
+    -- Format on save:
+    if client.server_capabilities.documentFormattingProvider then
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format()
+        end,
+      })
+    end
+  end
+}
+
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}

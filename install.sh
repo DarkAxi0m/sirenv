@@ -70,7 +70,7 @@ if command -v sudo &>/dev/null; then
 
 echo "# ${GREEN}installing somethings i use often etc....${NC}"
 sudo apt-get update
-sudo apt-get install -y git curl btop tmux jq figlet fzf wget screen zoxide bat neovim build-essential
+sudo apt-get install -y git curl btop tmux jq figlet fzf wget screen zoxide bat dysk neovim build-essential
 
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat

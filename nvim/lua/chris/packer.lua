@@ -5,6 +5,9 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  use { 'mhartington/formatter.nvim' }
+
+
   use {
 	  'nvim-telescope/telescope.nvim', tag = '0.1.2',
 	  requires = { {'nvim-lua/plenary.nvim'} }
@@ -54,7 +57,7 @@ use({
 }
 
   use("folke/zen-mode.nvim")
-  use("github/copilot.vim")
+  -- use("github/copilot.vim")
   use("eandrju/cellular-automaton.nvim")
   use("laytan/cloak.nvim")
 

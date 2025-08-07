@@ -44,3 +44,6 @@ find "${DOWNLOAD_DIR}" -type f -iname "*.torrent" -exec rm {} +
 
 echo "Sorting complete."
 
+total_space_used=$(du -sh "$DOWNLOAD_DIR" | cut -f1)
+echo "Total space used by $DOWNLOAD_DIR: $total_space_used"
+

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+
+echo  Please select the window about which you
+echo  would like information by clicking the
+echo  mouse in that window.
+
+echo
+echo   ctrl-s to stop recording
+echo
+
+recordmydesktop --no-sound --on-the-fly-encoding --stop-shortcut=Control+s --windowid `xwininfo | grep 'id: 0x' | grep -Eo '0x[a-z0-9]+'`
+
