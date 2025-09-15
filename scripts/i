@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "------------!-----------"
+ip route get 8.8.8.8 2>/dev/null | awk '/src/ {for(i=1;i<=NF;i++) if($i=="src") print $(i+1)}'
+echo "------------!-----------"
+df -h -x tmpfs -x squashfs -x overlay -x fuse -x efivarfs | awk 'NR==1 || /^\/dev/'
+echo "------------!-----------"
+
+

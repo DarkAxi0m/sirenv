@@ -16,12 +16,13 @@ mkdir -p "${BASE_DIR}/pdfs"
 mkdir -p "${BASE_DIR}/docs"
 mkdir -p "${BASE_DIR}/dev"
 mkdir -p "${BASE_DIR}/exeiso"
+mkdir -p "${BASE_DIR}/3d"
 
 # Move video files
 find "${DOWNLOAD_DIR}" -path "${BASE_DIR}" -prune -o -type f \( -iname "*.mp4" -o -iname "*.avi" -o -iname "*.webm" -o -iname "*.mov" -o -iname "*.mkv" \) -print -exec mv {} "${BASE_DIR}/videos/" \; 
 
 # Move image files
-find "${DOWNLOAD_DIR}" -path "${BASE_DIR}" -prune -o -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.webp" -o -iname "*.xcf" -o -iname "*.png" -o -iname "*.gif" -o -iname "*.bmp" \) -print -exec mv {} "${BASE_DIR}/images/" \;
+find "${DOWNLOAD_DIR}" -path "${BASE_DIR}" -prune -o -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.webp" -o -iname "*.xcf" -o -iname "*.png" -o -iname "*.svg" -o -iname "*.gif" -o -iname "*.bmp" \) -print -exec mv {} "${BASE_DIR}/images/" \;
 
 # Move compressed files
 find "${DOWNLOAD_DIR}" -path "${BASE_DIR}" -prune -o -type f \( -iname "*.zip" -o -iname "*.rar" -o -iname "*.7z" -o -iname "*.tar.gz" \) -print -exec mv {} "${BASE_DIR}/zips/" \; 
@@ -40,6 +41,9 @@ find "${DOWNLOAD_DIR}" -path "${BASE_DIR}" -prune -o -type f \( -iname "*.iso" -
 
 
 find "${DOWNLOAD_DIR}" -type f -iname "*.torrent" -exec rm {} +
+
+
+find "${DOWNLOAD_DIR}" -path "${BASE_DIR}" -prune -o -type f \( -iname "*.stl" -o -iname "*.3mf" -o -iname "*.step"  \) -print -exec mv {} "${BASE_DIR}/3d/" \; 
 
 
 echo "Sorting complete."
