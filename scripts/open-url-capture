@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SELF_NAME="open-url-capture"
+SELF_DESKTOP="$SELF_NAME.desktop"
+SELF_PATH="/home/chris/sirenv/scripts/open-url-capture"
+DESKTOP_PATH="$HOME/.local/share/applications/$SELF_DESKTOP"
+
+install_self() {
+  echo "== Installing URL capture handler =="
+
+  mkdir -p "$HOME/.local/share/applications"
+
+  cat > "$DESKTOP_PATH" <<EOF
+[Desktop Entry]
+Name=Open URL (Capture)
+Comment=Copy URL to clipboard and notify, then open in Firefox
+Exec=$SELF_PATH %u
+Terminal=false
+Type=Application
+Categories=Network;WebBrowser;
+MimeType=x-scheme-handler/http;x-scheme-handler/https;
+NoDisplay=true
+EOF
+
+  chmod +x "$SELF_PATH"
+
+  xdg-mime default "$SELF_DESKTOP" x-scheme-handler/http
+  xdg-mime default "$SELF_DESKTOP" x-scheme-handler/https
+  xdg-settings set default-web-browser "$SELF_DESKTOP" || true
+
+  echo "Installed."
+  echo
+  echo "Test with:"
+  echo "  xdg-open https://example.com"
+}
+
+copy_clipboard() {
+  local s="$1"
+
+  if [[ -n "${WAYLAND_DISPLAY-}" ]] && command -v wl-copy >/dev/null 2>&1; then
+    printf '%s' "$s" | wl-copy
+    return
+  fi
+
+  if command -v xclip >/dev/null 2>&1; then
+    printf '%s' "$s" | xclip -selection clipboard
+    return
+  fi
+}
+
+# --- main ---
+
+url="${1-}"
+
+if [[ -z "$url" ]]; then
+  install_self
+  exit 0
+fi
+
+if [[ "$url" =~ ^https?:// ]]; then
+  copy_clipboard "$url"
+
+  if command -v notify-send >/dev/null 2>&1; then
+    notify-send "URL copied to clipboard" "$url"
+  fi
+fi
+
+#exec firefox "$url"

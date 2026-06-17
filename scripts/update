@@ -1,5 +1,8 @@
 #!/bin/bash
 
+
+flatpak update -y
+
 # Elevate privileges if not run as root
 if [[ $EUID -ne 0 ]]; then
     exec sudo "$0" "$@"
@@ -40,8 +43,6 @@ update_system() {
 before=$(df -h / | awk 'NR==2{print $4}')
  sleep 1
 update_system
- sleep 1
-flatpak update -y
  sleep 1
 after=$(df -h / | awk 'NR==2{print $4}')
 

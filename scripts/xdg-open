@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+copy_clipboard() {
+  local s="$1"
+
+  # Wayland only if a Wayland display is present
+  if [[ -n "${WAYLAND_DISPLAY-}" ]] && command -v wl-copy >/dev/null 2>&1; then
+    printf '%s' "$s" | wl-copy
+    return
+  fi
+
+  # X11 fallback
+  if command -v xclip >/dev/null 2>&1; then
+    printf '%s' "$s" | xclip -selection clipboard
+    return
+  fi
+}
+
+is_url() {
+  [[ "$1" =~ ^https?:// ]]
+}
+
+args=("$@")
+
+if [[ ${#args[@]} -gt 0 ]] && is_url "${args[0]}"; then
+  url="${args[0]}"
+  copy_clipboard "$url"
+  notify-send "URL copied to clipboard" "$url"
+fi
+
+#exec /usr/bin/xdg-open "$@"

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# comment out one of these
+
+# 1) For PATH programs
+# exec dmenu_run -i -p "run:"
+
+# 2) For GUI apps from .desktop files
+#exec j4-dmenu-desktop --dmenu="dmenu   -i -p app:    -fn 'Monospace-12' "
+
+~/.config/rofi/launchers/type-6/launcher.sh
+
