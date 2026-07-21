@@ -1,53 +1,70 @@
-#!/bin/bash
-
-figlet Sortage!
+#!/usr/bin/env bash
+set -euo pipefail
 
 DOWNLOAD_DIR="$HOME/Downloads"
 BASE_DIR="$DOWNLOAD_DIR/Sortage"
+IGNORE_DIR="$DOWNLOAD_DIR/dwhelper"
 
+if command -v figlet >/dev/null 2>&1; then
+    figlet Sortage!
+else
+    echo "Sortage!"
+fi
 
 echo "Sorting files into: $BASE_DIR"
+echo "Ignoring: $IGNORE_DIR"
 
+mkdir -p "$BASE_DIR"/{videos,images,zips,pdfs,docs,dev,exeiso,3d}
 
-mkdir -p "${BASE_DIR}/videos"
-mkdir -p "${BASE_DIR}/images"
-mkdir -p "${BASE_DIR}/zips"
-mkdir -p "${BASE_DIR}/pdfs"
-mkdir -p "${BASE_DIR}/docs"
-mkdir -p "${BASE_DIR}/dev"
-mkdir -p "${BASE_DIR}/exeiso"
-mkdir -p "${BASE_DIR}/3d"
+find_downloads() {
+    find "$DOWNLOAD_DIR" \
+        \( -path "$BASE_DIR" -o -path "$IGNORE_DIR" \) -prune -o \
+        "$@"
+}
 
-# Move video files
-find "${DOWNLOAD_DIR}" -path "${BASE_DIR}" -prune -o -type f \( -iname "*.mp4" -o -iname "*.avi" -o -iname "*.webm" -o -iname "*.mov" -o -iname "*.mkv" \) -print -exec mv {} "${BASE_DIR}/videos/" \; 
+move_matches() {
+    local target_dir=$1
+    shift
 
-# Move image files
-find "${DOWNLOAD_DIR}" -path "${BASE_DIR}" -prune -o -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.webp" -o -iname "*.xcf" -o -iname "*.png" -o -iname "*.svg" -o -iname "*.gif" -o -iname "*.bmp" \) -print -exec mv {} "${BASE_DIR}/images/" \;
+    find_downloads -type f \( "$@" \) -print -exec mv -t "$target_dir" {} +
+}
 
-# Move compressed files
-find "${DOWNLOAD_DIR}" -path "${BASE_DIR}" -prune -o -type f \( -iname "*.zip" -o -iname "*.rar" -o -iname "*.7z" -o -iname "*.tar.gz" \) -print -exec mv {} "${BASE_DIR}/zips/" \; 
+delete_matches() {
+    find_downloads -type f \( "$@" \) -print -exec rm -f -- {} +
+}
 
-# Move PDF files
-find "${DOWNLOAD_DIR}" -path "${BASE_DIR}" -prune -o -type f \( -iname "*.pdf" \) -print -exec mv {} "${BASE_DIR}/pdfs/" \; 
+move_matches "$BASE_DIR/videos" \
+    -iname "*.mp4" -o -iname "*.avi" -o -iname "*.webm" -o -iname "*.mov" -o -iname "*.mkv"
 
-# Move document files
-find "${DOWNLOAD_DIR}" -path "${BASE_DIR}" -prune -o -type f \( -iname "*.doc" -o -iname "*.docx" -o -iname "*.ics" -o -iname "*.eml" -o -iname "*.odt" -o -iname "*.dotx" -o -iname "*.ppt" -o -iname "*.pptx" -o -iname "*.xls" -o -iname "*.xlsm" -o -iname "*.xlsx" \) -print -exec mv {} "${BASE_DIR}/docs/" \; 
+move_matches "$BASE_DIR/images" \
+    -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.webp" -o -iname "*.xcf" -o -iname "*.png" -o \
+    -iname "*.svg" -o -iname "*.gif" -o -iname "*.bmp"
 
-# Move development files (SQL, JSON, JavaScript, Text files)
-find "${DOWNLOAD_DIR}" -path "${BASE_DIR}" -prune -o -type f \( -iname "*.sql" -o -iname "*.json" -o -iname "*.md" -o -iname "*.pem" -o -iname "*.bak" -o -iname "*.yml" -o -iname "*.csv" -o -iname "*.html" -o -iname "*.js" -o -iname "*.txt" \) -print -exec mv {} "${BASE_DIR}/dev/" \;
+move_matches "$BASE_DIR/zips" \
+    -iname "*.zip" -o -iname "*.rar" -o -iname "*.7z" -o -iname "*.tar.gz"
 
+move_matches "$BASE_DIR/pdfs" \
+    -iname "*.pdf"
 
-find "${DOWNLOAD_DIR}" -path "${BASE_DIR}" -prune -o -type f \( -iname "*.iso" -o -iname "*.exe" -o -iname "*.sh" -o -iname "*.msi" -o -iname "*.deb" -o -iname "*.rpm"  \) -print -exec mv {} "${BASE_DIR}/exeiso/" \; 
+move_matches "$BASE_DIR/docs" \
+    -iname "*.doc" -o -iname "*.docx" -o -iname "*.ics" -o -iname "*.eml" -o -iname "*.odt" -o \
+    -iname "*.dotx" -o -iname "*.ppt" -o -iname "*.pptx" -o -iname "*.xls" -o -iname "*.xlsm" -o \
+    -iname "*.xlsx"
 
+move_matches "$BASE_DIR/dev" \
+    -iname "*.sql" -o -iname "*.json" -o -iname "*.md" -o -iname "*.pem" -o -iname "*.bak" -o \
+    -iname "*.yml" -o -iname "*.csv" -o -iname "*.html" -o -iname "*.js" -o -iname "*.txt"
 
-find "${DOWNLOAD_DIR}" -type f -iname "*.torrent" -exec rm {} +
+move_matches "$BASE_DIR/exeiso" \
+    -iname "*.iso" -o -iname "*.exe" -o -iname "*.sh" -o -iname "*.msi" -o -iname "*.deb" -o \
+    -iname "*.rpm"
 
+delete_matches -iname "*.torrent"
 
-find "${DOWNLOAD_DIR}" -path "${BASE_DIR}" -prune -o -type f \( -iname "*.stl" -o -iname "*.3mf" -o -iname "*.step"  \) -print -exec mv {} "${BASE_DIR}/3d/" \; 
-
+move_matches "$BASE_DIR/3d" \
+    -iname "*.stl" -o -iname "*.3mf" -o -iname "*.step"
 
 echo "Sorting complete."
 
 total_space_used=$(du -sh "$DOWNLOAD_DIR" | cut -f1)
 echo "Total space used by $DOWNLOAD_DIR: $total_space_used"
-

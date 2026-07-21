@@ -39,36 +39,32 @@ lsp.configure("gopls", {
   settings = {
     gopls = {
       staticcheck = true,
+      gofumpt = true,
       usePlaceholders = true,
       analyses = { unusedparams = true },
       completeUnimported = true,
     },
   },
+  on_attach = function(client, bufnr)
+    if not client.server_capabilities.documentFormattingProvider then
+      return
+    end
+
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.format({
+          bufnr = bufnr,
+          filter = function(format_client)
+            return format_client.name == "gopls"
+          end,
+        })
+      end,
+    })
+  end,
 })
 
 lsp.setup()
-
-
-require('lspconfig').gopls.setup({
-  settings = {
-    gopls = {
-      gofumpt = true,       -- If you want gofumpt-style formatting
-      staticcheck = true,
-      completeUnimported = true,
-    },
-  },
-  on_attach = function(client, bufnr)
-    -- Format on save:
-    if client.server_capabilities.documentFormattingProvider then
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.format()
-        end,
-      })
-    end
-  end
-})
 
 require'lspconfig'.ts_ls.setup{
 

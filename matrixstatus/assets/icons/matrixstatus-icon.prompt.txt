@@ -1,0 +1,8 @@
+Use case: logo-brand
+Asset type: desktop application icon, square app icon
+Primary request: A cool modern icon for an app named Matrix Status that sets Matrix chat presence/status.
+Subject: A stylized glowing 3x3 matrix grid combined with a clean status presence dot/check motif, suggesting chat presence and quick status switching.
+Style: polished Linux desktop app icon, slightly dimensional, crisp edges, high contrast, readable at small sizes, professional utility app feel.
+Composition: centered single icon mark with generous padding, no text, no letters, no watermark.
+Palette: deep charcoal/graphite body with Matrix-like green, amber, and red status lights. Use green freely in the icon, but do not use pure #ff00ff in the subject.
+Background removal: generated on a perfectly flat #ff00ff chroma-key background, then converted to transparent PNG with remove_chroma_key.py.

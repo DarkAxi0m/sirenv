@@ -3,7 +3,6 @@
 vimrc_file="$HOME/.vimrc"
 nvim_path="$HOME/.config/nvim"
 bashrc_path="$HOME/.bashrc"
-fishconfig_path="$HOME/.config/fish/config.fish"
 config_path="$HOME/.config"
 wezterm_path="$HOME/.wezterm.lua"
 
@@ -12,7 +11,6 @@ PACKER_PATH="$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim"
 
 sir_nvim_path="$(pwd)/nvim"
 sir_bashrc_path="$(pwd)/bashrc"
-sir_fishconfig_path="$(pwd)/config.fish"
 sir_tmux_path="$(pwd)/tmux"
 sir_ill_path="$(pwd)/illdo/ill.sh"
 sir_yazi_path="$(pwd)/bin/yazi/yazi"
@@ -79,7 +77,6 @@ ln -s /usr/bin/batcat ~/.local/bin/bat
 echo ${GREEN}
 figlet "Lets Go!"
 echo "----------------"
-install/fish.sh
 install/neovim.sh
 install/lazygit.sh
 install/fzf.sh
@@ -124,22 +121,6 @@ else
     echo "$source_line" >> "$bashrc_path"
     echo "Line added to .bashrc"
     source $bashrc_path
-fi
-
-if [ -d "$fishconfig_path" ]; then
-   echo "No fish..."
-else
- echo "# ${GREEN} Checking fish... ${NC}"
-	source_line="source $sir_fishconfig_path"
-
-	if grep -Fxq "$source_line" "$fishconfig_path"; then
-	    echo "Line already present in fish config"
-	else
-	    echo "$source_line" >> "$fishconfig_path"
-	    echo "Line added to  fish config"
-	    source $fishconfig_path
-	fi
-
 fi
 
 echo "# ${GREEN} tmux... ${NC}"

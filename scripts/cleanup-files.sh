@@ -2,7 +2,7 @@
 # Usage: ./clean.sh [--deep]
 set -euo pipefail
 
-SRC="${SRC_DIR:-$HOME/dwhelper}"
+SRC="${SRC_DIR:-$HOME/Downloads/dwhelper}"
 HOST="${HOST_ADDR:-10.1.1.20}"
 DEST_PATH="${DEST_PATH:-/mnt/Pool1/Recv/dwhelper}"
 REMOTE_USER="${REMOTE_USER:-$USER}"

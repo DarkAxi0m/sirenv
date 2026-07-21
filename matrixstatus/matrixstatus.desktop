@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Matrix Status
+Comment=Set your Matrix presence and status message
+Exec=/home/chris/.local/bin/matrixstatus
+Icon=matrixstatus
+Terminal=false
+Categories=Utility;
+StartupNotify=true

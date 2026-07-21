@@ -16,4 +16,21 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 
 
 
+-- Normal mode: whole file
+vim.keymap.set("n", "<leader>cc", ":%s/")
+
+-- Visual mode: selection only
+vim.keymap.set("x", "<leader>cc", ":s/")
+
+
+-- Normal mode: organise imports via gopls
+vim.keymap.set("n", "<leader>oi", function()
+  vim.lsp.buf.code_action({
+    context = { only = { "source.organizeImports" } },
+    apply = true,
+  })
+end, { desc = "Organise Go imports" })
+
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+
 
