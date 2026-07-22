@@ -77,6 +77,7 @@ ln -s /usr/bin/batcat ~/.local/bin/bat
 echo ${GREEN}
 figlet "Lets Go!"
 echo "----------------"
+install/fish.sh
 install/neovim.sh
 install/lazygit.sh
 install/fzf.sh
