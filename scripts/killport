@@ -1,0 +1,114 @@
+#!/bin/bash
+
+set -u
+
+usage() {
+    cat <<'EOF'
+Usage: killport [--force] PORT
+
+Kills the process using PORT.
+
+Options:
+  -9, --force   Send SIGKILL immediately instead of trying SIGTERM first
+  -h, --help    Show this help
+EOF
+}
+
+force=0
+
+case "${1:-}" in
+    -h|--help)
+        usage
+        exit 0
+        ;;
+    -9|--force)
+        force=1
+        shift
+        ;;
+esac
+
+port="${1:-}"
+
+if [[ -z "$port" ]]; then
+    usage >&2
+    exit 2
+fi
+
+if [[ "$port" == *:* ]]; then
+    port="${port##*:}"
+fi
+
+if ! [[ "$port" =~ ^[0-9]+$ ]] || (( port < 1 || port > 65535 )); then
+    echo "Invalid port: $port" >&2
+    exit 2
+fi
+
+port_pids() {
+    {
+        if command -v lsof >/dev/null 2>&1; then
+            lsof -nP -t -iTCP:"$port" -sTCP:LISTEN 2>/dev/null
+            lsof -nP -t -iUDP:"$port" 2>/dev/null
+        fi
+
+        if command -v fuser >/dev/null 2>&1; then
+            fuser -n tcp "$port" 2>/dev/null
+            fuser -n udp "$port" 2>/dev/null
+        fi
+    } | tr ' ' '\n' | awk '/^[0-9]+$/ && !seen[$0]++'
+}
+
+mapfile -t pids < <(port_pids)
+remaining=()
+
+if (( ${#pids[@]} == 0 )); then
+    echo "No process found using port $port."
+    exit 0
+fi
+
+echo "Found process(es) using port $port:"
+ps -o pid,user,comm,args -p "$(IFS=,; echo "${pids[*]}")" 2>/dev/null || printf '  %s\n' "${pids[@]}"
+
+if [[ -t 0 ]]; then
+    read -r -p "Kill these process(es)? [y/N] " confirm
+    case "$confirm" in
+        y|Y|yes|YES)
+            ;;
+        *)
+            echo "Aborted."
+            exit 0
+            ;;
+    esac
+else
+    echo "Refusing to kill without confirmation because stdin is not interactive." >&2
+    echo "Run this command from a terminal to confirm the kill." >&2
+    exit 1
+fi
+
+if (( force == 1 )); then
+    echo "Sending SIGKILL..."
+    kill -KILL "${pids[@]}"
+else
+    echo "Sending SIGTERM..."
+    kill "${pids[@]}"
+
+    for _ in {1..10}; do
+        sleep 0.5
+        mapfile -t remaining < <(port_pids)
+        (( ${#remaining[@]} == 0 )) && break
+    done
+
+    if (( ${#remaining[@]} > 0 )); then
+        echo "Still running; sending SIGKILL..."
+        kill -KILL "${remaining[@]}"
+    fi
+fi
+
+sleep 0.2
+mapfile -t remaining < <(port_pids)
+
+if (( ${#remaining[@]} == 0 )); then
+    echo "Port $port is free."
+else
+    echo "Port $port is still in use. Try: sudo $0 $port" >&2
+    exit 1
+fi
