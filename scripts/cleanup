@@ -1,36 +1,40 @@
 #!/bin/bash
 
-# Function to get directory size in McleanB
-get_dir_size() {
-    du -sm $1 | cut -f1
-}
-
-SCRIPT_DIR="$(dirname "$(realpath "$0")")"
-"$SCRIPT_DIR/empty_trash.sh"
-"$SCRIPT_DIR/sortage.sh"
-
-downloads_path="$HOME/Downloads"
-echo $downloads_path
-
-# Clear user's pip cache if pip is available
-if command -v pip &>/dev/null; then
-    echo "Purging user's pip cache..."
-    pip cache purge
-fi
-
-# Manually clear the pip cache if it wasn't cleared properly
-cache_dir="$HOME/.cache/pip"
-if [ -d "$cache_dir" ]; then
-    echo "Manually clearing pip cache..."
-    rm -rf "$cache_dir"
-fi
-
-
-
-# Ensure the script is run with root privileges for further cleaning
+# Ensure the script is run with root privileges for system cleanup.
 if [[ $EUID -ne 0 ]]; then
     echo "Re-running the script with root privileges for complete system cleanup..."
     exec sudo "$0" "$@"
+fi
+
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+target_user="${SUDO_USER:-$USER}"
+target_home="$(getent passwd "$target_user" | cut -d: -f6)"
+
+run_user_script() {
+    local script_path="$1"
+
+    if [[ "$target_user" == "$USER" ]]; then
+        "$script_path"
+    else
+        sudo -u "$target_user" "$script_path"
+    fi
+}
+
+if [[ -n "$target_home" && -d "$target_home" ]]; then
+    run_user_script "$SCRIPT_DIR/empty_trash.sh"
+    run_user_script "$SCRIPT_DIR/sortage.sh"
+
+    # Clear the invoking user's pip cache.
+    if sudo -u "$target_user" command -v pip &>/dev/null; then
+        echo "Purging user's pip cache..."
+        sudo -u "$target_user" pip cache purge
+    fi
+
+    cache_dir="$target_home/.cache/pip"
+    if [[ -d "$cache_dir" ]]; then
+        echo "Manually clearing pip cache..."
+        rm -rf "$cache_dir"
+    fi
 fi
 
 echo "Calculating disk space before cleanup..."
@@ -44,7 +48,9 @@ echo "Cleaning up APT cache..."
 apt autoclean && apt autoremove -y
 
 echo "Removing thumbnail cache..."
-rm -rf ~/.cache/thumbnails/*
+if [[ -n "$target_home" && -d "$target_home/.cache/thumbnails" ]]; then
+    rm -rf "$target_home/.cache/thumbnails"/*
+fi
 
 # Uncomment the following line if you want to clean npm cache
 # echo "Cleaning npm cache..."
@@ -58,14 +64,10 @@ after=$(df -h / | awk 'NR==2{print $4}')
 
 echo -e "Disk space before: $before\nDisk space after: $after"
 
-target_user="${SUDO_USER:-$USER}"
-target_home="$(getent passwd "$target_user" | cut -d: -f6)"
-
 if [[ -n "$target_home" && -d "$target_home/.cache/fontconfig" ]]; then
     echo "Cleaning fontconfig cache..."
     find "$target_home/.cache/fontconfig" -mindepth 1 -maxdepth 1 -type f -delete
     fc-cache -r -f
 fi
-
 
 
