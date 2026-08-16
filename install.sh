@@ -5,6 +5,8 @@ nvim_path="$HOME/.config/nvim"
 bashrc_path="$HOME/.bashrc"
 config_path="$HOME/.config"
 wezterm_path="$HOME/.wezterm.lua"
+sirenv_env_path="$HOME/.config/sirenv.env"
+sirenv_env_template="$(pwd)/config/sirenv.env.example"
 
 
 PACKER_PATH="$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim"
@@ -27,6 +29,69 @@ check_color_support() {
     else
         echo "Not running in a terminal?"
 	exit 1
+    fi
+}
+
+ensure_sirenv_env() {
+    local target="$sirenv_env_path"
+    local template="$sirenv_env_template"
+    local pending_block=""
+    local appended=0
+    local line
+    local var_name
+
+    mkdir -p "$(dirname "$target")"
+
+    if [ ! -f "$template" ]; then
+        echo "# ${YELLOW}sirenv env template not found at $template, skipping.${NC}"
+        return 0
+    fi
+
+    if [ ! -f "$target" ]; then
+        cp "$template" "$target"
+        echo "# ${GREEN}Created $target from template.${NC}"
+        return 0
+    fi
+
+    while IFS= read -r line || [ -n "$line" ]; do
+        if [[ "$line" =~ ^[[:space:]]*$ || "$line" =~ ^[[:space:]]*# ]]; then
+            pending_block+="$line"$'\n'
+
+            if [[ "$line" =~ ^[[:space:]]*#?[[:space:]]*export[[:space:]]+([A-Za-z_][A-Za-z0-9_]*)= ]]; then
+                var_name="${BASH_REMATCH[1]}"
+                if ! grep -Eq "^[[:space:]]*#?[[:space:]]*export[[:space:]]+${var_name}=" "$target"; then
+                    if [ "$appended" -eq 0 ]; then
+                        printf '\n# Added by sirenv installer from template.\n' >> "$target"
+                        appended=1
+                    fi
+                    printf '%s' "$pending_block" >> "$target"
+                fi
+                pending_block=""
+            fi
+
+            continue
+        fi
+
+        if [[ "$line" =~ ^[[:space:]]*export[[:space:]]+([A-Za-z_][A-Za-z0-9_]*)= ]]; then
+            var_name="${BASH_REMATCH[1]}"
+            if ! grep -Eq "^[[:space:]]*#?[[:space:]]*export[[:space:]]+${var_name}=" "$target"; then
+                if [ "$appended" -eq 0 ]; then
+                    printf '\n# Added by sirenv installer from template.\n' >> "$target"
+                    appended=1
+                fi
+                printf '%s%s\n' "$pending_block" "$line" >> "$target"
+            fi
+            pending_block=""
+            continue
+        fi
+
+        pending_block=""
+    done < "$template"
+
+    if [ "$appended" -eq 1 ]; then
+        echo "# ${GREEN}Added missing sirenv config options to $target.${NC}"
+    else
+        echo "# ${GREEN}$target already has all sirenv config options.${NC}"
     fi
 }
 
@@ -69,6 +134,9 @@ if command -v sudo &>/dev/null; then
 echo "# ${GREEN}installing somethings i use often etc....${NC}"
 sudo apt-get update
 sudo apt-get install -y git curl btop tmux jq figlet fzf wget screen zoxide bat dysk neovim build-essential
+
+echo "# ${GREEN} sirenv shared env... ${NC}"
+ensure_sirenv_env
 
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
