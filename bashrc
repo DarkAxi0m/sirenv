@@ -2,6 +2,8 @@ alias vim=nvim
 
 eval "$(fzf --bash)"
 
+MMCTL_COMPLETION_CACHE="$HOME/.cache/sirenv/mmctl-completion.bash"
+
 run_wfzf() {
     ~/sirenv/scripts/wfzf.sh
 }
@@ -20,12 +22,15 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
 
 export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$(go env GOPATH)/bin
-export PATH=$PATH:/home/chris/go  
+export PATH="$PATH:$HOME/go/bin"
+export PATH="$PATH:$HOME/go"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH=~/sirenv/bin:~/sirenv/scripts:$PATH
 
-source <(mmctl completion bash)
+if [ -r "$MMCTL_COMPLETION_CACHE" ]; then
+    # Avoid generating completions on every shell startup.
+    source "$MMCTL_COMPLETION_CACHE"
+fi
 
 function yy() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
