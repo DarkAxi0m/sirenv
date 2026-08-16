@@ -47,8 +47,49 @@ cleanup_empty_dirs() {
   find "$SRC" -mindepth 1 -depth -type d -empty -delete
 }
 
+build_stash_scan_input() {
+  jq -cn \
+    --arg mode "$STASH_SCAN_MODE" \
+    --arg path "$STASH_SCAN_PATH" \
+    --arg rescan "${STASH_SCAN_RESCAN:-}" \
+    --arg covers "${STASH_SCAN_GENERATE_COVERS:-}" \
+    --arg previews "${STASH_SCAN_GENERATE_PREVIEWS:-}" \
+    --arg image_previews "${STASH_SCAN_GENERATE_IMAGE_PREVIEWS:-}" \
+    --arg sprites "${STASH_SCAN_GENERATE_SPRITES:-}" \
+    --arg phashes "${STASH_SCAN_GENERATE_PHASHES:-}" \
+    --arg image_phashes "${STASH_SCAN_GENERATE_IMAGE_PHASHES:-}" \
+    --arg thumbnails "${STASH_SCAN_GENERATE_THUMBNAILS:-}" \
+    --arg clip_previews "${STASH_SCAN_GENERATE_CLIP_PREVIEWS:-}" \
+    '
+      def optbool($value):
+        if $value == "" then
+          null
+        elif ($value | ascii_downcase) == "true" then
+          true
+        elif ($value | ascii_downcase) == "false" then
+          false
+        else
+          error("Expected boolean true/false, got: \($value)")
+        end;
+
+      {
+        paths: (if $mode == "selective" then [$path] else null end),
+        rescan: optbool($rescan),
+        scanGenerateCovers: optbool($covers),
+        scanGeneratePreviews: optbool($previews),
+        scanGenerateImagePreviews: optbool($image_previews),
+        scanGenerateSprites: optbool($sprites),
+        scanGeneratePhashes: optbool($phashes),
+        scanGenerateImagePhashes: optbool($image_phashes),
+        scanGenerateThumbnails: optbool($thumbnails),
+        scanGenerateClipPreviews: optbool($clip_previews)
+      }
+      | with_entries(select(.value != null))
+    '
+}
+
 trigger_stash_scan() {
-  local query payload
+  local query payload input_json
 
   if [[ -z "$STASH_API_KEY" ]]; then
     echo "Skipping Stash scan trigger: STASH_API_KEY is not set."
@@ -56,15 +97,7 @@ trigger_stash_scan() {
   fi
 
   case "$STASH_SCAN_MODE" in
-    full)
-      query='mutation { metadataScan(input: {}) }'
-      ;;
-    selective)
-      query='mutation MetadataScan($input: ScanMetadataInput!) { metadataScan(input: $input) }'
-      payload=$(jq -cn \
-        --arg query "$query" \
-        --arg path "$STASH_SCAN_PATH" \
-        '{query: $query, variables: {input: {paths: [$path]}}}')
+    full|selective)
       ;;
     *)
       echo "Skipping Stash scan trigger: unsupported STASH_SCAN_MODE '$STASH_SCAN_MODE'."
@@ -72,9 +105,16 @@ trigger_stash_scan() {
       ;;
   esac
 
-  if [[ "$STASH_SCAN_MODE" == "full" ]]; then
-    payload=$(jq -cn --arg query "$query" '{query: $query}')
+  query='mutation MetadataScan($input: ScanMetadataInput!) { metadataScan(input: $input) }'
+  if ! input_json="$(build_stash_scan_input)"; then
+    echo "Skipping Stash scan trigger: invalid scan option value."
+    return 0
   fi
+
+  payload=$(jq -cn \
+    --arg query "$query" \
+    --argjson input "$input_json" \
+    '{query: $query, variables: {input: $input}}')
 
   echo "Triggering Stash scan via ${STASH_URL}..."
   if ! curl -fsS \
