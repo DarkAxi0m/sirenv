@@ -1,5 +1,11 @@
 #!/bin/bash
 
+CONFIG_FILE="${SIRENV_ENV_FILE:-$HOME/.config/sirenv.env}"
+if [[ -f "$CONFIG_FILE" ]]; then
+  # shellcheck disable=SC1090
+  source "$CONFIG_FILE"
+fi
+
 # Check if file path is provided
 if [ -z "$1" ]; then
   echo "Usage: $0 <file_to_send>"
@@ -22,7 +28,7 @@ subject="File Attachment"
 body="This is the body of the email."
 
 # SMTP settings
-smtp="smtp://192.168.15.6:25"
+smtp="${SMTP_URL:-smtp://smtp.example.com:25}"
 smtp_user="your-smtp-username"
 smtp_pass="your-smtp-password"
 
@@ -30,4 +36,3 @@ echo "$body" | mutt -s "$subject" -a "$attachment" -- $to \
   --set smtp_url="$smtp" \
   --set from="$from" \
   --set realname="Your Name"
-

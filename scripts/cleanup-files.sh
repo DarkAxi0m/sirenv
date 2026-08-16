@@ -9,11 +9,11 @@ if [[ -f "$CONFIG_FILE" ]]; then
 fi
 
 SRC="${SRC_DIR:-$HOME/Downloads/dwhelper}"
-HOST="${HOST_ADDR:-10.1.1.20}"
-DEST_PATH="${DEST_PATH:-/mnt/Pool1/Recv/dwhelper}"
+HOST="${HOST_ADDR:-}"
+DEST_PATH="${DEST_PATH:-}"
 REMOTE_USER="${REMOTE_USER:-$USER}"
 DEST="${REMOTE_USER}@${HOST}:${DEST_PATH}"
-STASH_URL="${STASH_URL:-http://10.1.1.31:9999}"
+STASH_URL="${STASH_URL:-}"
 STASH_API_KEY="${STASH_API_KEY:-}"
 STASH_SCAN_PATH="${STASH_SCAN_PATH:-$DEST_PATH}"
 STASH_SCAN_MODE="${STASH_SCAN_MODE:-selective}"
@@ -128,6 +128,8 @@ trigger_stash_scan() {
 
 main() {
   [[ -d "$SRC" ]] || { echo "Missing source: $SRC" >&2; exit 1; }
+  [[ -n "$HOST" ]] || { echo "Missing HOST_ADDR in sirlan config." >&2; exit 1; }
+  [[ -n "$DEST_PATH" ]] || { echo "Missing DEST_PATH in sirlan config." >&2; exit 1; }
 
   if ! check_host; then
     echo "Host ${HOST} not reachable; exiting."

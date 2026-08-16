@@ -8,7 +8,7 @@ import webbrowser
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 
-DEFAULT_HS = "https://matrix.accede.au"
+DEFAULT_HS = os.environ.get("MATRIX_URL", "https://matrix.example.com")
 DEFAULT_PORT = 8765
 
 login_token = None
