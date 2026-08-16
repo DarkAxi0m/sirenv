@@ -1,23 +1,25 @@
 #!/bin/bash
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 vimrc_file="$HOME/.vimrc"
 nvim_path="$HOME/.config/nvim"
 bashrc_path="$HOME/.bashrc"
 config_path="$HOME/.config"
 wezterm_path="$HOME/.wezterm.lua"
 sirenv_env_path="$HOME/.config/sirenv.env"
-sirenv_env_template="$(pwd)/config/sirenv.env.example"
+sirenv_env_template="$SCRIPT_DIR/config/sirenv.env.example"
 
 
 PACKER_PATH="$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim"
 
-sir_nvim_path="$(pwd)/nvim"
-sir_bashrc_path="$(pwd)/bashrc"
-sir_tmux_path="$(pwd)/tmux"
-sir_ill_path="$(pwd)/illdo/ill.sh"
-sir_yazi_path="$(pwd)/bin/yazi/yazi"
-sir_archive="$(pwd)/scripts/archive.sh"
-sir_wezterm="$(pwd)/wezterm.lua"
+sir_nvim_path="$SCRIPT_DIR/nvim"
+sir_bashrc_path="$SCRIPT_DIR/bashrc"
+sir_tmux_path="$SCRIPT_DIR/tmux"
+sir_ill_path="$SCRIPT_DIR/illdo/ill.sh"
+sir_yazi_path="$SCRIPT_DIR/bin/yazi"
+sir_archive="$SCRIPT_DIR/scripts/archive"
+sir_wezterm="$SCRIPT_DIR/wezterm.lua"
 
 check_color_support() {
     if [[ -t 1 ]]; then
@@ -30,6 +32,41 @@ check_color_support() {
         echo "Not running in a terminal?"
 	exit 1
     fi
+}
+
+ensure_symlink() {
+    local source_path="$1"
+    local target_path="$2"
+
+    if [ -L "$target_path" ]; then
+        if [ "$(readlink "$target_path")" = "$source_path" ]; then
+            echo "$target_path already points to $source_path"
+            return 0
+        fi
+        rm -f "$target_path"
+    elif [ -e "$target_path" ]; then
+        echo "$target_path exists and is not a symlink, skipping."
+        return 0
+    fi
+
+    ln -s "$source_path" "$target_path"
+    echo "Created symbolic link: $target_path -> $source_path"
+}
+
+backup_dir_once() {
+    local source_dir="$1"
+    local backup_dir="${source_dir}.old"
+
+    if [ ! -d "$source_dir" ] || [ -L "$source_dir" ]; then
+        return 0
+    fi
+
+    if [ -e "$backup_dir" ]; then
+        backup_dir="${source_dir}.old.$(date +%Y%m%d%H%M%S)"
+    fi
+
+    mv "$source_dir" "$backup_dir"
+    echo "Moved $source_dir to $backup_dir"
 }
 
 ensure_sirenv_env() {
@@ -139,16 +176,16 @@ echo "# ${GREEN} sirenv shared env... ${NC}"
 ensure_sirenv_env
 
 mkdir -p ~/.local/bin
-ln -s /usr/bin/batcat ~/.local/bin/bat
+ensure_symlink "/usr/bin/batcat" "$HOME/.local/bin/bat"
 
 
 echo ${GREEN}
 figlet "Lets Go!"
 echo "----------------"
-install/fish.sh
-install/neovim.sh
-install/lazygit.sh
-install/fzf.sh
+"$SCRIPT_DIR/install/fish.sh"
+"$SCRIPT_DIR/install/neovim.sh"
+"$SCRIPT_DIR/install/lazygit.sh"
+"$SCRIPT_DIR/install/fzf.sh"
 echo "----------------"
 touch "$vimrc_file"
 echo ${NC}
@@ -170,16 +207,14 @@ if [ -d "$nvim_path" ]; then
     if [ -L "$nvim_path" ]; then
         echo "$nvim_path is a symbolic link"
     elif [ -d "$nvim_path" ]; then
-        echo "$nvim_path is a directory, renaming it to .old"
-        mv "$nvim_path" "$nvim_path.old"
-        ln -s "$sir_nvim_path" "$nvim_path"
-        echo "Created symbolic link"
+        echo "$nvim_path is a directory, moving it out of the way"
+        backup_dir_once "$nvim_path"
+        ensure_symlink "$sir_nvim_path" "$nvim_path"
     else
         echo "i don't know what the path is?"
     fi
 else
-    ln -s "$sir_nvim_path" "$nvim_path"
-    echo "Created symbolic link"
+    ensure_symlink "$sir_nvim_path" "$nvim_path"
 fi
 echo "# ${GREEN} Checking bashrc... ${NC}"
 source_line="source $sir_bashrc_path"
@@ -189,22 +224,21 @@ if grep -Fxq "$source_line" "$bashrc_path"; then
 else
     echo "$source_line" >> "$bashrc_path"
     echo "Line added to .bashrc"
-    source $bashrc_path
 fi
 
 echo "# ${GREEN} tmux... ${NC}"
-ln -s "$sir_tmux_path" "$config_path"
-echo "Created symbolic link"
+ensure_symlink "$sir_tmux_path" "$config_path/tmux"
 
 
 echo "# ${GREEN} Misc Dirs... ${NC}"
-mkdir "$HOME/workbox"
-mkdir "$HOME/sandbox"
+mkdir -p "$HOME/workbox"
+mkdir -p "$HOME/sandbox"
 echo "done"
 
-ln -s "~/bin/ill" "$sir_ill_path"  
-ln -s "~/bin/yazi" "$sir_yazi_path"  
-ln -s "$sir_archive" "~/.local/bin/archive"
-ln -s "$sir_wezterm" "$wezterm_path"
+mkdir -p "$HOME/bin"
+ensure_symlink "$sir_ill_path" "$HOME/bin/ill"
+ensure_symlink "$sir_yazi_path" "$HOME/bin/yazi"
+ensure_symlink "$sir_archive" "$HOME/.local/bin/archive"
+ensure_symlink "$sir_wezterm" "$wezterm_path"
 
 echo "${YELLOW} Done for now... ${NC}"
