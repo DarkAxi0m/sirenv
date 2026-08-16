@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/sirenv"
+CACHE_FILE="$CACHE_DIR/mmctl-completion.bash"
+
+mkdir -p "$CACHE_DIR"
+mmctl completion bash > "$CACHE_FILE"
+
+echo "Wrote mmctl completion cache to $CACHE_FILE"
