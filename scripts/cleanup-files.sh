@@ -44,7 +44,7 @@ move_old() {
 }
 
 cleanup_empty_dirs() {
-  find "$SRC" -depth -type d -empty -delete
+  find "$SRC" -mindepth 1 -depth -type d -empty -delete
 }
 
 trigger_stash_scan() {
